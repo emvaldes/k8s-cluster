@@ -1,0 +1,196 @@
+#!/bin/bash
+## Version: 0.1.0
+
+function cluster_storage () {
+    tracking_process ${FUNCNAME} "${@}";
+    mkdir -p ${clusters_path}/${script_name}/configs;
+    S3_BUCKET_POLICY="${clusters_path}/${script_name}/configs/s3bucket-policy.json" ;
+    cat /dev/null > ${S3_BUCKET_POLICY};
+    ## POLICY_ID=$(python2 -c "import random; print random.randint(1,10000000000000)") ;
+    POLICY_ID="PolicyK8SS3Bucket";
+    ## POLICY_STMT=$(python2 -c "import random; print random.randint(1,10000000000000)") ;
+    POLICY_STMT="StmtK8SS3Bucket";
+    display_message "Creating S3 Bucket: ${S3_BUCKET_NAME} ...";
+    services_console "s3api create-bucket \
+      --bucket ${S3_BUCKET_NAME} \
+      --region ${AWS_DEFAULT_REGION}" ;
+    debugging_process ${?};
+    display_message "Placing Bucket-Versioning Policy ..." ;
+    services_console "s3api put-bucket-versioning \
+      --bucket ${S3_BUCKET_NAME} \
+      --versioning-configuration Status=Enabled" ;
+    debugging_process ${?};
+    display_message "Configuring Public-Access settings ..." ;
+    services_console "s3api put-public-access-block \
+      --bucket ${S3_BUCKET_NAME} \
+      --public-access-block-configuration BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=true,RestrictPublicBuckets=true" ;
+    debugging_process ${?};
+    ## inline '{"Id":"Policy{{POLICY_ID}}","Statement":[{"Action":"s3:*","Effect":"Allow","Principal":{"AWS":"arn:aws:sts::{{ACCOUNT_NUMBER}}:assumed-role/okta-admins/{{USER}}"},"Resource":"arn:aws:s3:::{{S3_BUCKET_NAME}}/*","Sid":"Stmt{{POLICY_STMT}}"}],"Version":"2012-10-17"}' > ${S3_BUCKET_POLICY} ;
+    inline '{"Id":"Policy{{POLICY_ID}}","Statement":[{"Action":"s3:*","Effect":"Allow","Principal":{"AWS":"arn:aws:iam::{{ACCOUNT_NUMBER}}:user/{{AWS_PROFILE}}"},"Resource":"arn:aws:s3:::{{S3_BUCKET_NAME}}/*","Sid":"Stmt{{POLICY_STMT}}"}],"Version":"2012-10-17"}' > ${S3_BUCKET_POLICY} ;
+    sed -i '' -e "s|{{POLICY_ID}}|${POLICY_ID}|g" \
+              -e "s|{{USER}}|${USER}|g" \
+              -e "s|{{AWS_PROFILE}}|${AWS_PROFILE}|g" \
+              -e "s|{{ACCOUNT_NUMBER}}|${ACCOUNT_NUMBER}|g" \
+              -e "s|{{S3_BUCKET_NAME}}|${S3_BUCKET_NAME}|g" \
+              -e "s|{{POLICY_STMT}}|${POLICY_STMT}|g" \
+    ${S3_BUCKET_POLICY} ;
+    debugging_process ${?};
+    display_message "Applying S3 Bucket Policy ..." ;
+    services_console "s3api put-bucket-policy \
+      --bucket ${S3_BUCKET_NAME} \
+      --policy file://${S3_BUCKET_POLICY}" ;
+    debugging_process ${?};
+    continue_process;
+    return 0;
+  }; alias cluster-storage='cluster_storage';
+
+function create_k8scluster () {
+    tracking_process ${FUNCNAME} "${@}";
+    display_message "Creating Kubernetes Cluster: ${KOPS_CLUSTER_NAME} ...";
+    ## Warning: This syntax will disable the use of etcd-manager
+    ##          --override cluster.spec.etcdClusters[*].provider=Legacy \
+    dig ${KOPS_CLUSTER_NAME};
+    kops_console "create cluster \
+    --name=$KOPS_CLUSTER_NAME \
+    --dns-zone=$KOPS_CLUSTER_NAME \
+    --state=$KOPS_STATE_STORE \
+    --zones=$NODE_ZONES \
+    --master-zones=$MASTER_ZONES \
+    --node-count=3 \
+    --node-size=$NODE_SIZE \
+    --master-count=3 \
+    --master-size=$MASTER_SIZE \
+    --networking=weave \
+    --topology=public \
+    --bastion=false \
+    --ssh-public-key $access_pubkey \
+    --v 1 \
+    --yes";
+    debugging_process ${?};
+    dig api.${KOPS_CLUSTER_NAME};
+    dig api.internal.${KOPS_CLUSTER_NAME};
+    continue_process;
+    return 0;
+  }; alias create-k8scluster='create_k8scluster';
+
+function delete_k8scluster () {
+    tracking_process ${FUNCNAME} "${@}";
+    display_message "Deleting Kubernetes Cluster: ${KOPS_CLUSTER_NAME} ...";
+    services_console "s3 \
+      --profile ${AWS_DEFAULT_PROFILE} \
+      sync s3://${S3_BUCKET_NAME}/${cluster_context} ${KOPS_STATE_BACKUP} \
+      --delete" 1>/dev/null;
+    kops_console "delete cluster \
+      --name=${KOPS_CLUSTER_NAME} \
+      --state=${KOPS_STATE_STORE} \
+      --v 3 \
+      --yes";
+    ## services_console "s3 \
+    ##   --profile ${AWS_DEFAULT_PROFILE} \
+    ##   rm ${KOPS_STATE_STORE} \
+    ##   --recursive" 1>/dev/null;
+    ## if [[ ${verbose} == true ]]; then ... fi;
+    debugging_process ${?};
+    continue_process;
+    return 0;
+  }; alias delete-k8scluster='delete_k8scluster';
+
+function k8s_env () {
+    tracking_process ${FUNCNAME} "${@}";
+    [[ ${#1} -gt 0 ]] && CLUSTER_NAME="${1}";
+    # if [[ ${#CLUSTER_NAME} -eq 0 ]]; then
+    #   display_message "Warning: Cluster Name is invalid (empty)! ";
+    #   return 1;
+    # fi;
+    [[ ${#2} -gt 0 ]] && DOMAIN_NAME="${2}";
+    # if [[ ${#DOMAIN_NAME} -eq 0 ]]; then
+    #   display_message "Warning: Domain Name is invalid (empty)! ";
+    #   return 2;
+    # fi;
+    [[ ${#3} -gt 0 ]] && silent_mode=true;
+    case "${DOMAIN_NAME}" in
+      ${DEFAULT_DOMAIN} ) export TARGET_PATH="${clusters_path}/${script_name}/configs"; mkdir -p ${TARGET_PATH};
+          [[ ${#CLUSTER_NAME} -eq 0 ]] && export CLUSTER_NAME="${USER}" ;
+          export AWS_PROFILE="kubernetes" ;
+          export AWS_DEFAULT_PROFILE="${AWS_PROFILE}" ;
+          export ACCOUNT_NUMBER="${AWS_ACCOUNT}" ;
+          export TARGET_DOMAIN="${DEFAULT_DOMAIN}" ;
+          export MASTER_ZONES="${AWS_ZONES}";
+          export NODE_ZONES="${AWS_ZONES}";
+          export MASTER_SIZE="t3a.xlarge";  ## t2.micro";
+          export NODE_SIZE="t3a.large";     ## t2.micro";
+          ## export S3_BUCKET_NAME="kubernetes-state--${ACCOUNT_NUMBER}--${CLUSTER_NAME}";
+          export S3_BUCKET_NAME="kubernetes-states--${ACCOUNT_NUMBER}";  ## -$(date +"%Y%m%d%H%M%S")
+      ;;
+    esac;
+    if [[ ( ${verbose} == true ) || ( ${silent_mode} == false ) ]]; then
+      display_message "Exporting ${CLUSTER_NAME}.${DOMAIN_NAME}: ...";
+      display_message "Environment:
+      SSH Public Key:      ${KUBERNETES_SSHKEY}
+      AWS Profile:         ${AWS_PROFILE}
+      AWS Default Profile: ${AWS_DEFAULT_PROFILE}
+      AWS Account Number:  ${ACCOUNT_NUMBER}
+      Target TLDN:         ${TARGET_DOMAIN}
+      Master-Node Size:    ${MASTER_SIZE}
+      Master-Node Zones:   ${MASTER_ZONES}
+      Cluster Nodes Size:  ${NODE_SIZE}
+      Cluster Nodes Zones: ${NODE_ZONES}
+      S3 Bucket Name:      ${S3_BUCKET_NAME}" ;
+    fi;
+    k8s_vars;
+    return 0;
+  }; alias k8s-env='k8s_env';
+
+function k8s_vars () {
+    tracking_process ${FUNCNAME} "${@}";
+    export AWS_DEFAULT_PROFILE="${AWS_PROFILE}" ;
+    export AWS_CONFIG_FILE="${HOME}/.aws/config" ;
+    export AWS_DEFAULT_OUTPUT="json" ;
+    export AWS_DEFAULT_REGION="${AWS_REGION}" ;
+    export AWS_SHARED_CREDENTIALS_FILE="${HOME}/.aws/credentials" ;
+    export PATH="${PATH}:/usr/local/Cellar/python/3.7.4/bin:${HOME}/Library/Python/3.7/bin:${HOME}/go/bin" ;
+    ## export KOPS_STATE_S3_ACL="" ;
+    export KOPS_CLUSTER_NAME="${CLUSTER_NAME}.${TARGET_DOMAIN}" ;
+    export KOPS_STATE_STORE="s3://${S3_BUCKET_NAME}" ;
+    export KOPS_FEATURE_FLAGS="SpecOverrideFlag" ;
+    export KUBERNETES_PROVIDER="aws" ;
+    if [[ ( ${verbose} == true ) || ( ${silent_mode} == false ) ]]; then
+      display_message "AWS Configurations
+      AWS Default Region: ${AWS_REGION}
+      Default Profile:    ${AWS_DEFAULT_PROFILE}
+      Config File:        ${AWS_CONFIG_FILE}
+      Default Output:     ${AWS_DEFAULT_OUTPUT}
+      Default Region:     ${AWS_DEFAULT_REGION}
+      SAML2 AWS Profile:  ${SAML_PROFILE}
+      Shared Credentials: ${AWS_SHARED_CREDENTIALS_FILE}
+      Availability Zones: ${AWS_ZONES}";
+      display_message "KOPS Configurations
+      KOPS Cluster Name:   ${KOPS_CLUSTER_NAME}
+      KOPS State Store:    ${KOPS_STATE_STORE}
+      KOPS Feature Flags:  ${KOPS_FEATURE_FLAGS}
+      Kubernetes Provider: ${KUBERNETES_PROVIDER}";
+      ## display_message ${PATH} | tr ':' '\n';
+    fi;
+    return 0;
+  }; alias k8s-vars='k8s_vars';
+
+function route53_configs () {
+    tracking_process ${FUNCNAME} "${@}";
+    display_message "Inquiring ${TARGET_DOMAIN} Name Servers:";
+    host -t NS ${TARGET_DOMAIN} ;
+    debugging_process ${?};
+    display_message "Inquiring ${TARGET_DOMAIN} SOA:";
+    host -t SOA ${TARGET_DOMAIN} ;
+    debugging_process ${?};
+    create_hostedzone ${KOPS_CLUSTER_NAME};
+    ## change_recordset ${KOPS_CLUSTER_NAME};
+    sleep_until 15 5 "Countdown:";
+    display_message "Inquiring ${KOPS_CLUSTER_NAME} Name Servers:";
+    host -t NS ${KOPS_CLUSTER_NAME} ;
+    debugging_process ${?};
+    display_message "Inquiring ${KOPS_CLUSTER_NAME} SOA:";
+    host -t SOA ${KOPS_CLUSTER_NAME} ;
+    debugging_process ${?};
+    continue_process;
+    return 0;
+  }; alias route53-configs='route53_configs';

@@ -1,0 +1,38 @@
+#!/bin/bash
+## Version: 0.1.0
+
+script_name=$(basename ${0});
+
+function how2create_cluster () {
+  ## tracking_process ${FUNCNAME} "${@}";
+  display_message "$ k8s-cluster --help
+
+Use:  k8s-cluster
+      --access-pubkey=''
+      --cluster-name='emvaldes'
+      --create-cluster
+      --delete-cluster
+      --deploy-cluster
+      --deploy-dashboard
+      --deploy-prometheus
+      --deploy-prototype
+      --describe-cluster
+      --domain-name
+      --enable-cloudwatch
+      --help-create
+      --help-delete
+      --interactive
+      --kubeconfig='/Users/emvaldes/.kube/config'
+      --profile='kubernetes'
+      --region='us-east-1'
+      --target-cluster='emvaldes.'
+      --zones='us-east-1a,us-east-1b,us-east-1c'
+      --verbose
+
+$ time { k8s-cluster --create-cluster=prototype.emvaldes.name --verbose ; };
+
+";
+    display_message "Goodbye!";
+    exit 0;
+    ## return 0;
+  };

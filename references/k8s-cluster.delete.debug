@@ -1,0 +1,1926 @@
+Kubernetes Cluster K8S-EC2 (destroy-debug)
+
+$ time { bash -x k8s-cluster --delete-cluster=prototype.emvaldes.name --verbose ; };
+
+++ basename k8s-cluster
++ script_name=k8s-cluster
++ export clusters_path=/tmp/clusters
++ clusters_path=/tmp/clusters
++ export CALLER_SCRIPT=/tmp/clusters/k8s-cluster/logger/k8s-cluster.log
++ CALLER_SCRIPT=/tmp/clusters/k8s-cluster/logger/k8s-cluster.log
+++ dirname /tmp/clusters/k8s-cluster/logger/k8s-cluster.log
++ mkdir -p /tmp/clusters/k8s-cluster/logger
++ mkdir -p /tmp/clusters/k8s-cluster/docker /tmp/clusters/k8s-cluster/configs
++ usr_local=/Users/emvaldes
++ mkdir -p /Users/emvaldes
++ local_bin=/Users/emvaldes/bin
++ mkdir -p /Users/emvaldes/bin
++ local_etc=/Users/emvaldes/etc
++ mkdir -p /Users/emvaldes/etc
++ local_tmp=/tmp
++ mkdir -p /tmp
++ xfiles=(devops-cloud.variables devops-tools.variables devops-cloud.functions devops-tools.functions)
++ declare -a xfiles
++ for xfile in "${xfiles[@]}"
++ shared_cloud=devops-cloud.variables
++ shared_module=/Users/emvaldes/etc/variables/devops-cloud.variables
++ [[ ! -e /Users/emvaldes/etc/variables/devops-cloud.variables ]]
++ source /Users/emvaldes/etc/variables/devops-cloud.variables
+++ export continue_response=false
+++ continue_response=false
+++ export github_server=https://github.com
+++ github_server=https://github.com
+++ export github_apis=https://api.github.com
+++ github_apis=https://api.github.com
+++ export github_content=https://raw.githubusercontent.com
+++ github_content=https://raw.githubusercontent.com
+++ export googleapis_storage=https://storage.googleapis.com
+++ googleapis_storage=https://storage.googleapis.com
+++ [[ darwin19.5.0 == \d\a\r\w\i\n* ]]
+++ export default_context=docker-desktop
+++ default_context=docker-desktop
+++ export TARGET_DOMAIN=emvaldes.name
+++ TARGET_DOMAIN=emvaldes.name
+++ export AWS_REGION=us-east-1
+++ AWS_REGION=us-east-1
+++ export AWS_ZONES=us-east-1a,us-east-1b,us-east-1c
+++ AWS_ZONES=us-east-1a,us-east-1b,us-east-1c
+++ export AWS_ACCOUNT=
+++ AWS_ACCOUNT=
+++ export AWS_ACCOUNT_LENGTH=12
+++ AWS_ACCOUNT_LENGTH=12
+++ export ADMINISTRATOR_ACCESS=arn:aws:iam::aws:policy/AdministratorAccess
+++ ADMINISTRATOR_ACCESS=arn:aws:iam::aws:policy/AdministratorAccess
+++ export USER_KUBERNETES=kubernetes
+++ USER_KUBERNETES=kubernetes
+++ export PROFILE_KUBERNETES=kubernetes
+++ PROFILE_KUBERNETES=kubernetes
+++ export GROUP_KUBERNETES=kubernetes
+++ GROUP_KUBERNETES=kubernetes
+++ export ROLE_KUBERNETES=kubernetes
+++ ROLE_KUBERNETES=kubernetes
+++ export POLICY_KUBERNETES=arn:aws:iam::aws:policy/AdministratorAccess
+++ POLICY_KUBERNETES=arn:aws:iam::aws:policy/AdministratorAccess
+++ export AWS_DEFAULT_PROFILE=default
+++ AWS_DEFAULT_PROFILE=default
+++ export AWS_PROFILE=default
+++ AWS_PROFILE=default
+++ export AWS_GROUP=default
+++ AWS_GROUP=default
+++ export SAML_PROFILE=devops
+++ SAML_PROFILE=devops
+++ export CLUSTER_NAME=kubernetes
+++ CLUSTER_NAME=kubernetes
+++ export KOPS_CLUSTER_NAME=emvaldes.emvaldes.name
+++ KOPS_CLUSTER_NAME=emvaldes.emvaldes.name
+++ export CONFIG_FILE=/Users/emvaldes/.aws/config
+++ CONFIG_FILE=/Users/emvaldes/.aws/config
+++ export CREDENTIALS_FILE=/Users/emvaldes/.aws/credentials
+++ CREDENTIALS_FILE=/Users/emvaldes/.aws/credentials
+++ export KUBEHOME=/Users/emvaldes/.kube
+++ KUBEHOME=/Users/emvaldes/.kube
+++ export KUBECONFIG=/Users/emvaldes/.kube/config
+++ KUBECONFIG=/Users/emvaldes/.kube/config
+++ export EKSCLUSTER_VERSION=1.15
+++ EKSCLUSTER_VERSION=1.15
+++ export KUBERNETES_SSHKEY=kubernetes.pub
+++ KUBERNETES_SSHKEY=kubernetes.pub
+++ export KUBERNETES_SSHKEY=kubernetes.pub
+++ KUBERNETES_SSHKEY=kubernetes.pub
+++ export TERRAFORM_SSHKEY=terraform.pub
+++ TERRAFORM_SSHKEY=terraform.pub
+++ export monitoring_account=tiller
+++ monitoring_account=tiller
+++ export monitoring_application=prometheus
+++ monitoring_application=prometheus
+++ export monitoring_operator=stable/prometheus-operator
+++ monitoring_operator=stable/prometheus-operator
+++ export namespace_default=default
+++ namespace_default=default
+++ export namespace_kubesystem=kube-system
+++ namespace_kubesystem=kube-system
+++ export namespace_monitoring=prometheus
+++ namespace_monitoring=prometheus
+++ export namespace_cloudwatch=amazon-cloudwatch
+++ namespace_cloudwatch=amazon-cloudwatch
+++ export include_everything=everything
+++ include_everything=everything
+++ export TARGET_DOCKERFILE=
+++ TARGET_DOCKERFILE=
+++ export DOCKERFILE_DEFAULT=/Users/emvaldes/etc/configs/docker
+++ DOCKERFILE_DEFAULT=/Users/emvaldes/etc/configs/docker
+++ export docker_application=helloworld
+++ docker_application=helloworld
+++ export cloudwatch_agent=cloudwatch-agent
+++ cloudwatch_agent=cloudwatch-agent
+++ export target_podname=
+++ target_podname=
++ for xfile in "${xfiles[@]}"
++ shared_cloud=devops-tools.variables
++ shared_module=/Users/emvaldes/etc/variables/devops-tools.variables
++ [[ ! -e /Users/emvaldes/etc/variables/devops-tools.variables ]]
++ source /Users/emvaldes/etc/variables/devops-tools.variables
+++ export openshift_server=https://mirror.openshift.com
+++ openshift_server=https://mirror.openshift.com
+++ export openshift_latest=https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest
+++ openshift_latest=https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest
+++ case "${OSTYPE}" in
+++ system_platform=linux
+++ which curl
+++ result=0
+++ [[ 0 != 0 ]]
+++ alias system-config=system_config
++ for xfile in "${xfiles[@]}"
++ shared_cloud=devops-cloud.functions
++ shared_module=/Users/emvaldes/etc/functions/devops-cloud.functions
++ [[ ! -e /Users/emvaldes/etc/functions/devops-cloud.functions ]]
++ source /Users/emvaldes/etc/functions/devops-cloud.functions
+++ alias change-recordset=change_recordset
+++ alias cloudwatch-namespace=cloudwatch_namespace
+++ alias cluster-application=cluster_application
+++ alias cluster-configuration=cluster_configuration
+++ alias cluster-contexts=cluster_contexts
+++ alias cluster-deployments=cluster_deployments
+++ alias cluster-info=cluster_info
+++ alias cluster-networks=cluster_networks
+++ alias cluster-podname=cluster_podname
+++ alias cluster-replicationsets=cluster_replicationsets
+++ alias cluster-services=cluster_services
+++ alias cluster-validation=cluster_validation
+++ alias configmap-clusterinfo=configmap_clusterinfo
+++ alias configmap-cwagent=configmap_cwagent
+++ alias configure-k8spod=configure_k8spod
+++ alias create-accesskey=create_accesskey
+++ alias create-ecrrepo=create_ecrrepo
+++ alias create-hostedzone=create_hostedzone
+++ alias create-iamgroup=create_iamgroup
+++ alias create-iamuser=create_iamuser
+++ alias create-namespace=create_namespace
+++ alias cwagent-daemonset=cwagent_daemonset
+++ alias cwagent-fluentd=cwagent_fluentd
+++ alias cwagent-serviceaccount=cwagent_serviceaccount
+++ alias delete-accesskey=delete_accesskey
+++ alias delete-services=delete_services
+++ alias deploy-dashboard=deploy_dashboard
+++ alias deploy-prometheus=deploy_prometheus
+++ alias deploy-prototype=deploy_prototype
+++ alias describe-cluster=describe_cluster
+++ alias describe-podname=describe_podname
+++ alias display-apiservice=display_apiservice
+++ alias display-hostedzone=display_hostedzone
+++ alias display-labels=display_labels
+++ alias display-namespaces=display_namespaces
+++ alias display-nodes=display_nodes
+++ alias display-podlog=display_podlog
+++ alias display-pods=display_pods
+++ alias domain-recordsets=domain_recordsets
+++ alias enable-cloudwatch=enable_cloudwatch
+++ alias export-kubeconfig=export_kubeconfig
+++ alias extract-deployment=extract_deployment
+++ alias fetch-awsaccount=fetch_awsaccount
+++ alias group-policy=group_policy
+++ alias hostedzone-exists=hostedzone_exists
+++ alias hostedzone-index=hostedzone_index
+++ alias login-ecrrepo=login_ecrrepo
+++ alias monitoring-services=monitoring_services
+++ alias openshift-platform=openshift_platform
+++ alias publish-container=publish_container
+++ alias recordset-exists=recordset_exists
+++ alias rollout-deployment=rollout_deployment
+++ alias service-account=service_account
+++ alias setup-monitoring=setup_monitoring
+++ alias update-deployment=update_deployment
+++ export route53_hostrecord=
+++ route53_hostrecord=
+++ alias validate-hostrecord=validate_hostrecord
+++ alias validate-iamgroup=validate_iamgroup
+++ alias validate-iamuser=validate_iamuser
++ for xfile in "${xfiles[@]}"
++ shared_cloud=devops-tools.functions
++ shared_module=/Users/emvaldes/etc/functions/devops-tools.functions
++ [[ ! -e /Users/emvaldes/etc/functions/devops-tools.functions ]]
++ source /Users/emvaldes/etc/functions/devops-tools.functions
+++ alias active-interfaces=active_interfaces
+++ alias add-path=add2path
+++ alias amazon-credentials=amazon_credentials
+++ alias includes=contains
+++ alias continue-process=continue_process
+++ alias course-content=course_content
+++ alias decode=decode64
+++ alias deploy-module=deploy_module
+++ alias devops-functions=devops_functions
+++ alias display-message=display_message
+++ alias display-progress=display_progress
+++ alias bash-completion=bash_completion
+++ alias eksctl-console=eksctl_console
+++ alias enable-rvmtools=enable_rvmtools
+++ alias encode=encode64
+++ alias execute-command=execute_command
+++ alias export-credential=export_credential
+++ alias fetch-credential=fetch_credential
+++ alias kops-console=kops_console
+++ alias kubectl-console=kubectl_console
+++ alias listenv-path=listenv_path
+++ alias listing-virtualization=listing_virtualization
+++ alias logging-process=logging_process
+++ alias load-devops=load_devops
+++ alias openshift-environment=openshift_environment
+++ alias primary-interface=primary_interface
+++ alias public-ipaddr=public_ipaddr
+++ alias remove-comments=remove_comments
+++ alias remove-thisfile=remove_thisfile
+++ alias reset-networking=reset_networking
+++ alias services-console=services_console
+++ alias sleep-until=sleep_until
+++ alias update-credentials=update_credentials
+++ alias update-repos=update_repos
+++ alias validate_saml2aws=validate-saml2aws
+++ alias vault-credentials=vault_credentials
++ xfiles=(k8s-cluster.functions k8s-cluster.variables k8s-cluster.help k8s-cluster.create.help k8s-cluster.delete.help)
++ declare -a xfiles
++ for xfile in "${xfiles[@]}"
++ target=/Users/emvaldes/etc/k8s-cluster/k8s-cluster.functions
++ [[ -e /Users/emvaldes/etc/k8s-cluster/k8s-cluster.functions ]]
++ source /Users/emvaldes/etc/k8s-cluster/k8s-cluster.functions
+++ alias cluster-storage=cluster_storage
+++ alias create-k8scluster=create_k8scluster
+++ alias delete-k8scluster=delete_k8scluster
+++ alias k8s-env=k8s_env
+++ alias k8s-vars=k8s_vars
+++ alias route53-configs=route53_configs
++ for xfile in "${xfiles[@]}"
++ target=/Users/emvaldes/etc/k8s-cluster/k8s-cluster.variables
++ [[ -e /Users/emvaldes/etc/k8s-cluster/k8s-cluster.variables ]]
++ source /Users/emvaldes/etc/k8s-cluster/k8s-cluster.variables
++ for xfile in "${xfiles[@]}"
++ target=/Users/emvaldes/etc/k8s-cluster/k8s-cluster.help
++ [[ -e /Users/emvaldes/etc/k8s-cluster/k8s-cluster.help ]]
++ source /Users/emvaldes/etc/k8s-cluster/k8s-cluster.help
++++ basename k8s-cluster
+++ script_name=k8s-cluster
++ for xfile in "${xfiles[@]}"
++ target=/Users/emvaldes/etc/k8s-cluster/k8s-cluster.create.help
++ [[ -e /Users/emvaldes/etc/k8s-cluster/k8s-cluster.create.help ]]
++ source /Users/emvaldes/etc/k8s-cluster/k8s-cluster.create.help
++++ basename k8s-cluster
+++ script_name=k8s-cluster
++ for xfile in "${xfiles[@]}"
++ target=/Users/emvaldes/etc/k8s-cluster/k8s-cluster.delete.help
++ [[ -e /Users/emvaldes/etc/k8s-cluster/k8s-cluster.delete.help ]]
++ source /Users/emvaldes/etc/k8s-cluster/k8s-cluster.delete.help
++++ basename k8s-cluster
+++ script_name=k8s-cluster
++ xfiles=(devops-tools.functions devops-install.functions)
++ declare -a xfiles
++ for xfile in "${xfiles[@]}"
++ target=/Users/emvaldes/etc/functions/devops-tools.functions
++ [[ -e /Users/emvaldes/etc/functions/devops-tools.functions ]]
++ source /Users/emvaldes/etc/functions/devops-tools.functions
+++ alias active-interfaces=active_interfaces
+++ alias add-path=add2path
+++ alias amazon-credentials=amazon_credentials
+++ alias includes=contains
+++ alias continue-process=continue_process
+++ alias course-content=course_content
+++ alias decode=decode64
+++ alias deploy-module=deploy_module
+++ alias devops-functions=devops_functions
+++ alias display-message=display_message
+++ alias display-progress=display_progress
+++ alias bash-completion=bash_completion
+++ alias eksctl-console=eksctl_console
+++ alias enable-rvmtools=enable_rvmtools
+++ alias encode=encode64
+++ alias execute-command=execute_command
+++ alias export-credential=export_credential
+++ alias fetch-credential=fetch_credential
+++ alias kops-console=kops_console
+++ alias kubectl-console=kubectl_console
+++ alias listenv-path=listenv_path
+++ alias listing-virtualization=listing_virtualization
+++ alias logging-process=logging_process
+++ alias load-devops=load_devops
+++ alias openshift-environment=openshift_environment
+++ alias primary-interface=primary_interface
+++ alias public-ipaddr=public_ipaddr
+++ alias remove-comments=remove_comments
+++ alias remove-thisfile=remove_thisfile
+++ alias reset-networking=reset_networking
+++ alias services-console=services_console
+++ alias sleep-until=sleep_until
+++ alias update-credentials=update_credentials
+++ alias update-repos=update_repos
+++ alias validate_saml2aws=validate-saml2aws
+++ alias vault-credentials=vault_credentials
++ for xfile in "${xfiles[@]}"
++ target=/Users/emvaldes/etc/functions/devops-install.functions
++ [[ -e /Users/emvaldes/etc/functions/devops-install.functions ]]
++ source /Users/emvaldes/etc/functions/devops-install.functions
+++ alias install-authenticator=install_authenticator
+++ alias install-awscli=install_awscli
+++ alias install-consul=install_consul
+++ alias install-curl=install_curl
+++ alias install-eksctl=install_eksctl
+++ alias install-golang=install_golang
+++ alias install-helm2=install_helm2
+++ alias install-homebrew=install_homebrew
+++ alias install-jq=install_jq
+++ alias install-kops=install_kops
+++ alias install-kubectl=install_kubectl
+++ alias install-metricsserver=install_metricsserver
+++ alias install-minikube=install_minikube
+++ alias install-nomad=install_nomad
+++ alias install-openshift=install_openshift
+++ alias install-packer=install_packer
+++ alias install-pip=install_pip
+++ alias install-python=install_python
+++ alias install-saml2aws=install_saml2aws
+++ alias install-terraform=install_terraform
+++ alias install-tree=install_tree
+++ alias install-vault=install_vault
+++ alias install-virtualenv=install_virtualenv
+++ alias install-watch=install_watch
+++ alias install-wget=install_wget
+++ alias unpack-install=unpack_install
++ k8s_cluster --delete-cluster=prototype.emvaldes.name --verbose
++ tracking_process k8s_cluster --delete-cluster=prototype.emvaldes.name --verbose
++ [[ -n k8s_cluster ]]
++ local 'func_params=k8s_cluster --delete-cluster=prototype.emvaldes.name --verbose'
++ local func_name=k8s_cluster
++ logging_process k8s_cluster --delete-cluster=prototype.emvaldes.name --verbose
++ [[ -n k8s_cluster ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812183956
++ [[ 48 -eq 0 ]]
++ [[ '' == true ]]
++ return 0
++ return 0
++ oIFS='
+'
++ for xitem in "${@}"
++ IFS==
+++ echo -e --delete-cluster=prototype.emvaldes.name
+++ sed -e s/--//g
++ set delete-cluster prototype.emvaldes.name
++ [[ delete-cluster = \a\c\c\e\s\s\-\p\u\b\k\e\y ]]
++ [[ delete-cluster = \c\l\u\s\t\e\r\-\n\a\m\e ]]
++ [[ delete-cluster = \c\r\e\a\t\e\-\c\l\u\s\t\e\r ]]
++ [[ delete-cluster = \d\e\b\u\g ]]
++ [[ delete-cluster = \d\e\l\e\t\e\-\c\l\u\s\t\e\r ]]
++ export target_cluster=prototype.emvaldes.name
++ target_cluster=prototype.emvaldes.name
++ delete_cluster=true
++ [[ delete-cluster = \d\e\p\l\o\y\-\c\l\u\s\t\e\r ]]
++ [[ delete-cluster = \d\e\p\l\o\y\-\d\a\s\h\b\o\a\r\d ]]
++ [[ delete-cluster = \d\e\p\l\o\y\-\p\r\o\m\e\t\h\e\u\s ]]
++ [[ delete-cluster = \d\e\p\l\o\y\-\p\r\o\t\o\t\y\p\e ]]
++ [[ delete-cluster = \d\e\s\c\r\i\b\e\-\c\l\u\s\t\e\r ]]
++ [[ delete-cluster = \d\o\m\a\i\n\-\n\a\m\e ]]
++ [[ delete-cluster = \e\n\a\b\l\e\-\c\l\o\u\d\w\a\t\c\h ]]
++ [[ delete-cluster = \h\e\l\p\-\c\r\e\a\t\e ]]
++ [[ delete-cluster = \h\e\l\p\-\d\e\l\e\t\e ]]
++ [[ delete-cluster = \i\n\t\e\r\a\c\t\i\v\e ]]
++ [[ delete-cluster = \k\u\b\e\c\o\n\f\i\g ]]
++ [[ delete-cluster = \p\r\o\f\i\l\e ]]
++ [[ delete-cluster = \r\e\g\i\o\n ]]
++ [[ delete-cluster = \t\a\r\g\e\t\-\c\l\u\s\t\e\r ]]
++ [[ delete-cluster = \z\o\n\e\s ]]
++ [[ delete-cluster = \v\e\r\b\o\s\e ]]
++ [[ delete-cluster = \h\e\l\p ]]
++ for xitem in "${@}"
++ IFS==
+++ echo -e --verbose
+++ sed -e s/--//g
++ set verbose
++ [[ verbose = \a\c\c\e\s\s\-\p\u\b\k\e\y ]]
++ [[ verbose = \c\l\u\s\t\e\r\-\n\a\m\e ]]
++ [[ verbose = \c\r\e\a\t\e\-\c\l\u\s\t\e\r ]]
++ [[ verbose = \d\e\b\u\g ]]
++ [[ verbose = \d\e\l\e\t\e\-\c\l\u\s\t\e\r ]]
++ [[ verbose = \d\e\p\l\o\y\-\c\l\u\s\t\e\r ]]
++ [[ verbose = \d\e\p\l\o\y\-\d\a\s\h\b\o\a\r\d ]]
++ [[ verbose = \d\e\p\l\o\y\-\p\r\o\m\e\t\h\e\u\s ]]
++ [[ verbose = \d\e\p\l\o\y\-\p\r\o\t\o\t\y\p\e ]]
++ [[ verbose = \d\e\s\c\r\i\b\e\-\c\l\u\s\t\e\r ]]
++ [[ verbose = \d\o\m\a\i\n\-\n\a\m\e ]]
++ [[ verbose = \e\n\a\b\l\e\-\c\l\o\u\d\w\a\t\c\h ]]
++ [[ verbose = \h\e\l\p\-\c\r\e\a\t\e ]]
++ [[ verbose = \h\e\l\p\-\d\e\l\e\t\e ]]
++ [[ verbose = \i\n\t\e\r\a\c\t\i\v\e ]]
++ [[ verbose = \k\u\b\e\c\o\n\f\i\g ]]
++ [[ verbose = \p\r\o\f\i\l\e ]]
++ [[ verbose = \r\e\g\i\o\n ]]
++ [[ verbose = \t\a\r\g\e\t\-\c\l\u\s\t\e\r ]]
++ [[ verbose = \z\o\n\e\s ]]
++ [[ verbose = \v\e\r\b\o\s\e ]]
++ export verbose=true
++ verbose=true
++ [[ verbose = \h\e\l\p ]]
++ IFS='
+'
++ [[ 4 -eq 0 ]]
++ [[ 0 -eq 0 ]]
++ export create_cluster=false
++ create_cluster=false
++ [[ 0 -eq 0 ]]
++ export deploy_cluster=false
++ deploy_cluster=false
++ [[ 0 -eq 0 ]]
++ export deploy_dashboard=false
++ deploy_dashboard=false
++ [[ 0 -eq 0 ]]
++ export deploy_prometheus=false
++ deploy_prometheus=false
++ [[ 0 -eq 0 ]]
++ export deploy_prototype=false
++ deploy_prototype=false
++ [[ 0 -eq 0 ]]
++ export describe_cluster=false
++ describe_cluster=false
++ [[ 0 -eq 0 ]]
++ export describe_create=false
++ describe_create=false
++ [[ 0 -eq 0 ]]
++ export describe_delete=false
++ describe_delete=false
++ [[ 0 -eq 0 ]]
++ export enable_cloudwatch=false
++ enable_cloudwatch=false
++ [[ 0 -eq 0 ]]
++ export interactive_mode=false
++ interactive_mode=false
++ [[ 23 -gt 0 ]]
++ regex='(.*)\.(.*)\.(.*)'
++ [[ prototype.emvaldes.name =~ (.*)\.(.*)\.(.*) ]]
++ export cluster_name=prototype
++ cluster_name=prototype
++ export domain_name=emvaldes.name
++ domain_name=emvaldes.name
++ [[ 0 -eq 0 ]]
++ export debug_mode=false
++ debug_mode=false
++ [[ 4 -eq 0 ]]
++ [[ 0 -eq 0 ]]
++ export access_pubkey=/Users/emvaldes/.ssh/kubernetes.pub
++ access_pubkey=/Users/emvaldes/.ssh/kubernetes.pub
++ [[ 0 -eq 0 ]]
++ export default_profile=kubernetes
++ default_profile=kubernetes
++ default_user=emvaldes
++ [[ false == true ]]
++ debug_mode=3
++ [[ false == true ]]
++ [[ false == true ]]
++ [[ 0 -eq 0 ]]
++ export default_region=us-east-1
++ default_region=us-east-1
++ [[ 0 -eq 0 ]]
++ export default_zones=us-east-1a,us-east-1b,us-east-1c
++ default_zones=us-east-1a,us-east-1b,us-east-1c
++ [[ '' == true ]]
++ [[ 9 -eq 0 ]]
++ [[ 13 -eq 0 ]]
++ export cluster_context=prototype.emvaldes.name
++ cluster_context=prototype.emvaldes.name
++ export docker_build=emvaldes.name/prototype
++ docker_build=emvaldes.name/prototype
++ export TARGET_DOCKERFILE=/tmp/clusters/k8s-cluster/docker/emvaldes.name/prototype
++ TARGET_DOCKERFILE=/tmp/clusters/k8s-cluster/docker/emvaldes.name/prototype
++ mkdir -p /tmp/clusters/k8s-cluster/docker/emvaldes.name/prototype
++ case ${delete_cluster} in
++ script_request=delete
+++ dirname /tmp/clusters/k8s-cluster/logger/k8s-cluster.log
++ export CALLER_SCRIPT=/tmp/clusters/k8s-cluster/logger/prototype.emvaldes.name--delete.log
++ CALLER_SCRIPT=/tmp/clusters/k8s-cluster/logger/prototype.emvaldes.name--delete.log
++ cat /dev/null
++ logging_process 'Processing: prototype.emvaldes.name'
++ [[ -n Processing: prototype.emvaldes.name ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812183956
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812183956 = Processing: prototype.emvaldes.name'
++ return 0
++ [[ 0 -eq 0 ]]
++ fetch_awsaccount
++ tracking_process fetch_awsaccount
++ [[ -n fetch_awsaccount ]]
++ local func_params=fetch_awsaccount
++ local func_name=fetch_awsaccount
++ logging_process fetch_awsaccount
++ [[ -n fetch_awsaccount ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812183956
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812183956 = fetch_awsaccount'
++ return 0
++ return 0
+++ services_console '--profile default             --region us-east-1             sts get-caller-identity             --query '\''Account'\'' --output text'
+++ [[ -n --profile default             --region us-east-1             sts get-caller-identity             --query 'Account' --output text ]]
+++ local 'command_params=--profile default             --region us-east-1             sts get-caller-identity             --query '\''Account'\'' --output text'
+++ execute_command 'aws --profile default             --region us-east-1             sts get-caller-identity             --query '\''Account'\'' --output text'
+++ [[ -n aws --profile default             --region us-east-1             sts get-caller-identity             --query 'Account' --output text ]]
++++ echo -e aws --profile default --region us-east-1 sts get-caller-identity --query ''\''Account'\''' --output text
++++ sed -e 's|\([[:blank:]]\)\{1,\}| |g'
+++ local 'command_params=aws --profile default --region us-east-1 sts get-caller-identity --query '\''Account'\'' --output text'
+++ logging_process aws --profile default --region us-east-1 sts get-caller-identity --query ''\''Account'\''' --output text
+++ [[ -n aws ]]
+++ content=("${@}")
+++ local content
++++ date +%Y%m%d%H%M%S
+++ local timestamp=20200812183956
+++ [[ 68 -eq 0 ]]
+++ [[ true == true ]]
+++ [[ 68 -gt 0 ]]
+++ echo -e '20200812183956 = aws' --profile default --region us-east-1 sts get-caller-identity --query ''\''Account'\''' --output text
+++ return 0
+++ eval aws --profile default --region us-east-1 sts get-caller-identity --query ''\''Account'\''' --output text
++++ aws --profile default --region us-east-1 sts get-caller-identity --query Account --output text
++ export AWS_ACCOUNT=123456789012
++ AWS_ACCOUNT=123456789012
++ [[ 12 -eq 0 ]]
++ print 123456789012
++ inline '123456789012\n'
++ echo -en '123456789012\n'
+123456789012
++ return 0
++ [[ 12 -ne 12 ]]
++ create_iamgroup kubernetes arn:aws:iam::aws:policy/AdministratorAccess
++ tracking_process create_iamgroup kubernetes arn:aws:iam::aws:policy/AdministratorAccess
++ [[ -n create_iamgroup ]]
++ local 'func_params=create_iamgroup kubernetes arn:aws:iam::aws:policy/AdministratorAccess'
++ local func_name=create_iamgroup
++ logging_process create_iamgroup kubernetes arn:aws:iam::aws:policy/AdministratorAccess
++ [[ -n create_iamgroup ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812183958
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812183958 = create_iamgroup' kubernetes arn:aws:iam::aws:policy/AdministratorAccess
++ return 0
++ return 0
++ [[ -n kubernetes ]]
++ local group_name=kubernetes
++ AWS_PROFILE=default
++ validate_iamgroup kubernetes
++ tracking_process validate_iamgroup kubernetes
++ [[ -n validate_iamgroup ]]
++ local 'func_params=validate_iamgroup kubernetes'
++ local func_name=validate_iamgroup
++ logging_process validate_iamgroup kubernetes
++ [[ -n validate_iamgroup ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812183958
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812183958 = validate_iamgroup' kubernetes
++ return 0
++ return 0
++ [[ -n kubernetes ]]
++ local group_name=kubernetes
++ display_message 'Validating IAM Group: kubernetes'
++ newline
++ print
++ inline '\n'
++ echo -en '\n'
+
++ print 'Validating IAM Group: kubernetes'
++ inline 'Validating IAM Group: kubernetes\n'
++ echo -en 'Validating IAM Group: kubernetes\n'
+Validating IAM Group: kubernetes
+++ services_console '--profile default                     iam get-group                     --group-name kubernetes                     --query '\''Group.GroupName'\''                     --output text'
++ local group_exists=kubernetes
++ [[ kubernetes != kubernetes ]]
++ return 0
++ local group_exists=0
++ case "${group_exists}" in
++ [[ -n arn:aws:iam::aws:policy/AdministratorAccess ]]
++ local policy_name=arn:aws:iam::aws:policy/AdministratorAccess
++ group_policy kubernetes arn:aws:iam::aws:policy/AdministratorAccess
++ tracking_process group_policy kubernetes arn:aws:iam::aws:policy/AdministratorAccess
++ [[ -n group_policy ]]
++ local 'func_params=group_policy kubernetes arn:aws:iam::aws:policy/AdministratorAccess'
++ local func_name=group_policy
++ logging_process group_policy kubernetes arn:aws:iam::aws:policy/AdministratorAccess
++ [[ -n group_policy ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812183959
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812183959 = group_policy' kubernetes arn:aws:iam::aws:policy/AdministratorAccess
++ return 0
++ return 0
++ [[ -n kubernetes ]]
++ [[ -n arn:aws:iam::aws:policy/AdministratorAccess ]]
++ local group_name=kubernetes
++ local policy_name=arn:aws:iam::aws:policy/AdministratorAccess
++ services_console '--profile default                 iam attach-group-policy                 --group-name kubernetes                 --policy-arn arn:aws:iam::aws:policy/AdministratorAccess'
++ [[ -n --profile default                 iam attach-group-policy                 --group-name kubernetes                 --policy-arn arn:aws:iam::aws:policy/AdministratorAccess ]]
++ local 'command_params=--profile default                 iam attach-group-policy                 --group-name kubernetes                 --policy-arn arn:aws:iam::aws:policy/AdministratorAccess'
++ execute_command 'aws --profile default                 iam attach-group-policy                 --group-name kubernetes                 --policy-arn arn:aws:iam::aws:policy/AdministratorAccess'
++ [[ -n aws --profile default                 iam attach-group-policy                 --group-name kubernetes                 --policy-arn arn:aws:iam::aws:policy/AdministratorAccess ]]
+++ echo -e aws --profile default iam attach-group-policy --group-name kubernetes --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+++ sed -e 's|\([[:blank:]]\)\{1,\}| |g'
++ local 'command_params=aws --profile default iam attach-group-policy --group-name kubernetes --policy-arn arn:aws:iam::aws:policy/AdministratorAccess'
++ logging_process aws --profile default iam attach-group-policy --group-name kubernetes --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
++ [[ -n aws ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812183959
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812183959 = aws' --profile default iam attach-group-policy --group-name kubernetes --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
++ return 0
++ eval aws --profile default iam attach-group-policy --group-name kubernetes --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+++ aws --profile default iam attach-group-policy --group-name kubernetes --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
++ services_console '--profile default                 iam list-attached-group-policies                 --group-name kubernetes'
++ [[ -n --profile default                 iam list-attached-group-policies                 --group-name kubernetes ]]
++ local 'command_params=--profile default                 iam list-attached-group-policies                 --group-name kubernetes'
++ execute_command 'aws --profile default                 iam list-attached-group-policies                 --group-name kubernetes'
++ [[ -n aws --profile default                 iam list-attached-group-policies                 --group-name kubernetes ]]
+++ echo -e aws --profile default iam list-attached-group-policies --group-name kubernetes
+++ sed -e 's|\([[:blank:]]\)\{1,\}| |g'
++ local 'command_params=aws --profile default iam list-attached-group-policies --group-name kubernetes'
++ logging_process aws --profile default iam list-attached-group-policies --group-name kubernetes
++ [[ -n aws ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812184000
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812184000 = aws' --profile default iam list-attached-group-policies --group-name kubernetes
++ return 0
++ eval aws --profile default iam list-attached-group-policies --group-name kubernetes
+++ aws --profile default iam list-attached-group-policies --group-name kubernetes
+{
+    "AttachedPolicies": [
+        {
+            "PolicyName": "AdministratorAccess",
+            "PolicyArn": "arn:aws:iam::aws:policy/AdministratorAccess"
+        }
+    ]
+}
++ return 0
++ return 0
++ create_iamuser kubernetes kubernetes
++ tracking_process create_iamuser kubernetes kubernetes
++ [[ -n create_iamuser ]]
++ local 'func_params=create_iamuser kubernetes kubernetes'
++ local func_name=create_iamuser
++ logging_process create_iamuser kubernetes kubernetes
++ [[ -n create_iamuser ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812184001
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812184001 = create_iamuser' kubernetes kubernetes
++ return 0
++ return 0
++ [[ -n kubernetes ]]
++ local user_name=kubernetes
++ AWS_PROFILE=default
++ validate_iamuser kubernetes
++ tracking_process validate_iamuser kubernetes
++ [[ -n validate_iamuser ]]
++ local 'func_params=validate_iamuser kubernetes'
++ local func_name=validate_iamuser
++ logging_process validate_iamuser kubernetes
++ [[ -n validate_iamuser ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812184001
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812184001 = validate_iamuser' kubernetes
++ return 0
++ return 0
++ [[ -n kubernetes ]]
++ local user_name=kubernetes
++ display_message 'Validating IAM User: kubernetes'
++ newline
++ print
++ inline '\n'
++ echo -en '\n'
+
++ print 'Validating IAM User: kubernetes'
++ inline 'Validating IAM User: kubernetes\n'
++ echo -en 'Validating IAM User: kubernetes\n'
+Validating IAM User: kubernetes
+++ services_console '--profile default                     iam get-user                     --user-name kubernetes                     --query '\''User.UserName'\''                     --output text'
++ local user_exists=kubernetes
++ [[ kubernetes != kubernetes ]]
++ return 0
++ local user_exists=0
++ case "${user_exists}" in
++ [[ -n kubernetes ]]
++ local group_name=kubernetes
++ services_console '--profile default                 iam add-user-to-group                 --user-name kubernetes                 --group-name kubernetes'
++ [[ -n --profile default                 iam add-user-to-group                 --user-name kubernetes                 --group-name kubernetes ]]
++ local 'command_params=--profile default                 iam add-user-to-group                 --user-name kubernetes                 --group-name kubernetes'
++ execute_command 'aws --profile default                 iam add-user-to-group                 --user-name kubernetes                 --group-name kubernetes'
++ [[ -n aws --profile default                 iam add-user-to-group                 --user-name kubernetes                 --group-name kubernetes ]]
+++ echo -e aws --profile default iam add-user-to-group --user-name kubernetes --group-name kubernetes
+++ sed -e 's|\([[:blank:]]\)\{1,\}| |g'
++ local 'command_params=aws --profile default iam add-user-to-group --user-name kubernetes --group-name kubernetes'
++ logging_process aws --profile default iam add-user-to-group --user-name kubernetes --group-name kubernetes
++ [[ -n aws ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812184003
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812184003 = aws' --profile default iam add-user-to-group --user-name kubernetes --group-name kubernetes
++ return 0
++ eval aws --profile default iam add-user-to-group --user-name kubernetes --group-name kubernetes
+++ aws --profile default iam add-user-to-group --user-name kubernetes --group-name kubernetes
++ services_console '--profile default                 iam get-group                 --group-name kubernetes'
++ [[ -n --profile default                 iam get-group                 --group-name kubernetes ]]
++ local 'command_params=--profile default                 iam get-group                 --group-name kubernetes'
++ execute_command 'aws --profile default                 iam get-group                 --group-name kubernetes'
++ [[ -n aws --profile default                 iam get-group                 --group-name kubernetes ]]
+++ echo -e aws --profile default iam get-group --group-name kubernetes
+++ sed -e 's|\([[:blank:]]\)\{1,\}| |g'
++ local 'command_params=aws --profile default iam get-group --group-name kubernetes'
++ logging_process aws --profile default iam get-group --group-name kubernetes
++ [[ -n aws ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812184004
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812184004 = aws' --profile default iam get-group --group-name kubernetes
++ return 0
++ eval aws --profile default iam get-group --group-name kubernetes
+++ aws --profile default iam get-group --group-name kubernetes
+{
+    "Users": [
+        {
+            "Path": "/",
+            "UserName": "kubernetes",
+            "UserId": "AIDA2XV4BKOYCPXHQKTVU",
+            "Arn": "arn:aws:iam::123456789012:user/kubernetes",
+            "CreateDate": "2020-04-03T03:29:23+00:00"
+        }
+    ],
+    "Group": {
+        "Path": "/",
+        "GroupName": "kubernetes",
+        "GroupId": "AGPA2XV4BKOYH67DC5EXH",
+        "Arn": "arn:aws:iam::123456789012:group/kubernetes",
+        "CreateDate": "2020-04-03T03:27:48+00:00"
+    }
+}
++ services_console '--profile default         iam list-groups-for-user         --user-name kubernetes'
++ [[ -n --profile default         iam list-groups-for-user         --user-name kubernetes ]]
++ local 'command_params=--profile default         iam list-groups-for-user         --user-name kubernetes'
++ execute_command 'aws --profile default         iam list-groups-for-user         --user-name kubernetes'
++ [[ -n aws --profile default         iam list-groups-for-user         --user-name kubernetes ]]
+++ echo -e aws --profile default iam list-groups-for-user --user-name kubernetes
+++ sed -e 's|\([[:blank:]]\)\{1,\}| |g'
++ local 'command_params=aws --profile default iam list-groups-for-user --user-name kubernetes'
++ logging_process aws --profile default iam list-groups-for-user --user-name kubernetes
++ [[ -n aws ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812184005
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812184005 = aws' --profile default iam list-groups-for-user --user-name kubernetes
++ return 0
++ eval aws --profile default iam list-groups-for-user --user-name kubernetes
+++ aws --profile default iam list-groups-for-user --user-name kubernetes
+{
+    "Groups": [
+        {
+            "Path": "/",
+            "GroupName": "kubernetes",
+            "GroupId": "AGPA2XV4BKOYH67DC5EXH",
+            "Arn": "arn:aws:iam::123456789012:group/kubernetes",
+            "CreateDate": "2020-04-03T03:27:48+00:00"
+        }
+    ]
+}
++ return 0
++ k8s_env prototype emvaldes.name
++ tracking_process k8s_env prototype emvaldes.name
++ [[ -n k8s_env ]]
++ local 'func_params=k8s_env prototype emvaldes.name'
++ local func_name=k8s_env
++ logging_process k8s_env prototype emvaldes.name
++ [[ -n k8s_env ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812184006
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812184006 = k8s_env' prototype emvaldes.name
++ return 0
++ return 0
++ [[ 9 -gt 0 ]]
++ CLUSTER_NAME=prototype
++ [[ 13 -gt 0 ]]
++ DOMAIN_NAME=emvaldes.name
++ [[ 0 -gt 0 ]]
++ case "${DOMAIN_NAME}" in
++ export TARGET_PATH=/tmp/clusters/k8s-cluster/configs
++ TARGET_PATH=/tmp/clusters/k8s-cluster/configs
++ mkdir -p /tmp/clusters/k8s-cluster/configs
++ [[ 9 -eq 0 ]]
++ export AWS_PROFILE=kubernetes
++ AWS_PROFILE=kubernetes
++ export AWS_DEFAULT_PROFILE=kubernetes
++ AWS_DEFAULT_PROFILE=kubernetes
++ export ACCOUNT_NUMBER=123456789012
++ ACCOUNT_NUMBER=123456789012
++ export TARGET_DOMAIN=emvaldes.name
++ TARGET_DOMAIN=emvaldes.name
++ export MASTER_ZONES=us-east-1a,us-east-1b,us-east-1c
++ MASTER_ZONES=us-east-1a,us-east-1b,us-east-1c
++ export NODE_ZONES=us-east-1a,us-east-1b,us-east-1c
++ NODE_ZONES=us-east-1a,us-east-1b,us-east-1c
++ export MASTER_SIZE=t3a.xlarge
++ MASTER_SIZE=t3a.xlarge
++ export NODE_SIZE=t3a.large
++ NODE_SIZE=t3a.large
++ export S3_BUCKET_NAME=kubernetes-states--123456789012
++ S3_BUCKET_NAME=kubernetes-states--123456789012
++ [[ true == true ]]
++ display_message 'Exporting prototype.emvaldes.name: ...'
++ newline
++ print
++ inline '\n'
++ echo -en '\n'
+
++ print 'Exporting prototype.emvaldes.name: ...'
++ inline 'Exporting prototype.emvaldes.name: ...\n'
++ echo -en 'Exporting prototype.emvaldes.name: ...\n'
+Exporting prototype.emvaldes.name: ...
++ display_message 'Environment:
+      SSH Public Key:      id_rsa.pub
+      AWS Profile:         kubernetes
+      AWS Default Profile: kubernetes
+      AWS Account Number:  123456789012
+      Target TLDN:         emvaldes.name
+      Master-Node Size:    t3a.xlarge
+      Master-Node Zones:   us-east-1a,us-east-1b,us-east-1c
+      Cluster Nodes Size:  t3a.large
+      Cluster Nodes Zones: us-east-1a,us-east-1b,us-east-1c
+      S3 Bucket Name:      kubernetes-states--123456789012'
++ newline
++ print
++ inline '\n'
++ echo -en '\n'
+
++ print 'Environment:
+      SSH Public Key:      id_rsa.pub
+      AWS Profile:         kubernetes
+      AWS Default Profile: kubernetes
+      AWS Account Number:  123456789012
+      Target TLDN:         emvaldes.name
+      Master-Node Size:    t3a.xlarge
+      Master-Node Zones:   us-east-1a,us-east-1b,us-east-1c
+      Cluster Nodes Size:  t3a.large
+      Cluster Nodes Zones: us-east-1a,us-east-1b,us-east-1c
+      S3 Bucket Name:      kubernetes-states--123456789012'
++ inline 'Environment:
+      SSH Public Key:      id_rsa.pub
+      AWS Profile:         kubernetes
+      AWS Default Profile: kubernetes
+      AWS Account Number:  123456789012
+      Target TLDN:         emvaldes.name
+      Master-Node Size:    t3a.xlarge
+      Master-Node Zones:   us-east-1a,us-east-1b,us-east-1c
+      Cluster Nodes Size:  t3a.large
+      Cluster Nodes Zones: us-east-1a,us-east-1b,us-east-1c
+      S3 Bucket Name:      kubernetes-states--123456789012\n'
++ echo -en 'Environment:
+      SSH Public Key:      id_rsa.pub
+      AWS Profile:         kubernetes
+      AWS Default Profile: kubernetes
+      AWS Account Number:  123456789012
+      Target TLDN:         emvaldes.name
+      Master-Node Size:    t3a.xlarge
+      Master-Node Zones:   us-east-1a,us-east-1b,us-east-1c
+      Cluster Nodes Size:  t3a.large
+      Cluster Nodes Zones: us-east-1a,us-east-1b,us-east-1c
+      S3 Bucket Name:      kubernetes-states--123456789012\n'
+Environment:
+      SSH Public Key:      id_rsa.pub
+      AWS Profile:         kubernetes
+      AWS Default Profile: kubernetes
+      AWS Account Number:  123456789012
+      Target TLDN:         emvaldes.name
+      Master-Node Size:    t3a.xlarge
+      Master-Node Zones:   us-east-1a,us-east-1b,us-east-1c
+      Cluster Nodes Size:  t3a.large
+      Cluster Nodes Zones: us-east-1a,us-east-1b,us-east-1c
+      S3 Bucket Name:      kubernetes-states--123456789012
++ k8s_vars
++ tracking_process k8s_vars
++ [[ -n k8s_vars ]]
++ local func_params=k8s_vars
++ local func_name=k8s_vars
++ logging_process k8s_vars
++ [[ -n k8s_vars ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812184006
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812184006 = k8s_vars'
++ return 0
++ return 0
++ export AWS_DEFAULT_PROFILE=kubernetes
++ AWS_DEFAULT_PROFILE=kubernetes
++ export AWS_CONFIG_FILE=/Users/emvaldes/.aws/config
++ AWS_CONFIG_FILE=/Users/emvaldes/.aws/config
++ export AWS_DEFAULT_OUTPUT=json
++ AWS_DEFAULT_OUTPUT=json
++ export AWS_DEFAULT_REGION=us-east-1
++ AWS_DEFAULT_REGION=us-east-1
++ export AWS_SHARED_CREDENTIALS_FILE=/Users/emvaldes/.aws/credentials
++ AWS_SHARED_CREDENTIALS_FILE=/Users/emvaldes/.aws/credentials
++ export 'PATH=/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.8/bin:/Users/emvaldes/Library/Python/3.8/bin:/opt/local/bin:/opt/local/sbin:/Users/emvaldes/bin:/Users/emvaldes/etc:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/Library/Apple/usr/bin:/usr/local/Cellar/python/3.7.4/bin:/Users/emvaldes/Library/Python/3.7/bin:/Users/emvaldes/go/bin'
++ PATH='/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.8/bin:/Users/emvaldes/Library/Python/3.8/bin:/opt/local/bin:/opt/local/sbin:/Users/emvaldes/bin:/Users/emvaldes/etc:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/Library/Apple/usr/bin:/usr/local/Cellar/python/3.7.4/bin:/Users/emvaldes/Library/Python/3.7/bin:/Users/emvaldes/go/bin'
++ export KOPS_CLUSTER_NAME=prototype.emvaldes.name
++ KOPS_CLUSTER_NAME=prototype.emvaldes.name
++ export KOPS_STATE_STORE=s3://kubernetes-states--123456789012
++ KOPS_STATE_STORE=s3://kubernetes-states--123456789012
++ export KOPS_FEATURE_FLAGS=SpecOverrideFlag
++ KOPS_FEATURE_FLAGS=SpecOverrideFlag
++ export KUBERNETES_PROVIDER=aws
++ KUBERNETES_PROVIDER=aws
++ [[ true == true ]]
++ display_message 'AWS Configurations
+      AWS Default Region: us-east-1
+      Default Profile:    kubernetes
+      Config File:        /Users/emvaldes/.aws/config
+      Default Output:     json
+      Default Region:     us-east-1
+      SAML2 AWS Profile:  devops
+      Shared Credentials: /Users/emvaldes/.aws/credentials
+      Availability Zones: us-east-1a,us-east-1b,us-east-1c'
++ newline
++ print
++ inline '\n'
++ echo -en '\n'
+
++ print 'AWS Configurations
+      AWS Default Region: us-east-1
+      Default Profile:    kubernetes
+      Config File:        /Users/emvaldes/.aws/config
+      Default Output:     json
+      Default Region:     us-east-1
+      SAML2 AWS Profile:  devops
+      Shared Credentials: /Users/emvaldes/.aws/credentials
+      Availability Zones: us-east-1a,us-east-1b,us-east-1c'
++ inline 'AWS Configurations
+      AWS Default Region: us-east-1
+      Default Profile:    kubernetes
+      Config File:        /Users/emvaldes/.aws/config
+      Default Output:     json
+      Default Region:     us-east-1
+      SAML2 AWS Profile:  devops
+      Shared Credentials: /Users/emvaldes/.aws/credentials
+      Availability Zones: us-east-1a,us-east-1b,us-east-1c\n'
++ echo -en 'AWS Configurations
+      AWS Default Region: us-east-1
+      Default Profile:    kubernetes
+      Config File:        /Users/emvaldes/.aws/config
+      Default Output:     json
+      Default Region:     us-east-1
+      SAML2 AWS Profile:  devops
+      Shared Credentials: /Users/emvaldes/.aws/credentials
+      Availability Zones: us-east-1a,us-east-1b,us-east-1c\n'
+AWS Configurations
+      AWS Default Region: us-east-1
+      Default Profile:    kubernetes
+      Config File:        /Users/emvaldes/.aws/config
+      Default Output:     json
+      Default Region:     us-east-1
+      SAML2 AWS Profile:  devops
+      Shared Credentials: /Users/emvaldes/.aws/credentials
+      Availability Zones: us-east-1a,us-east-1b,us-east-1c
++ display_message 'KOPS Configurations
+      KOPS Cluster Name:   prototype.emvaldes.name
+      KOPS State Store:    s3://kubernetes-states--123456789012
+      KOPS Feature Flags:  SpecOverrideFlag
+      Kubernetes Provider: aws'
++ newline
++ print
++ inline '\n'
++ echo -en '\n'
+
++ print 'KOPS Configurations
+      KOPS Cluster Name:   prototype.emvaldes.name
+      KOPS State Store:    s3://kubernetes-states--123456789012
+      KOPS Feature Flags:  SpecOverrideFlag
+      Kubernetes Provider: aws'
++ inline 'KOPS Configurations
+      KOPS Cluster Name:   prototype.emvaldes.name
+      KOPS State Store:    s3://kubernetes-states--123456789012
+      KOPS Feature Flags:  SpecOverrideFlag
+      Kubernetes Provider: aws\n'
++ echo -en 'KOPS Configurations
+      KOPS Cluster Name:   prototype.emvaldes.name
+      KOPS State Store:    s3://kubernetes-states--123456789012
+      KOPS Feature Flags:  SpecOverrideFlag
+      Kubernetes Provider: aws\n'
+KOPS Configurations
+      KOPS Cluster Name:   prototype.emvaldes.name
+      KOPS State Store:    s3://kubernetes-states--123456789012
+      KOPS Feature Flags:  SpecOverrideFlag
+      Kubernetes Provider: aws
++ return 0
++ return 0
++ export configs_path=/tmp/clusters/configs
++ configs_path=/tmp/clusters/configs
++ mkdir -p /tmp/clusters/configs
++ export KOPS_STATE_BACKUP=/Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype
++ KOPS_STATE_BACKUP=/Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype
++ mkdir -p /Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype
++ export KUBECONFIG=/Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype/config
++ KUBECONFIG=/Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype/config
++ touch /Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype/config
++ export service_platform=k8s-ec2
++ service_platform=k8s-ec2
+++ services_console '--profile kubernetes             --region us-east-1             sts get-caller-identity             --query '\''Account'\''             --output text'
+++ [[ -n --profile kubernetes             --region us-east-1             sts get-caller-identity             --query 'Account'             --output text ]]
+++ local 'command_params=--profile kubernetes             --region us-east-1             sts get-caller-identity             --query '\''Account'\''             --output text'
+++ execute_command 'aws --profile kubernetes             --region us-east-1             sts get-caller-identity             --query '\''Account'\''             --output text'
+++ [[ -n aws --profile kubernetes             --region us-east-1             sts get-caller-identity             --query 'Account'             --output text ]]
++++ echo -e aws --profile kubernetes --region us-east-1 sts get-caller-identity --query ''\''Account'\''' --output text
++++ sed -e 's|\([[:blank:]]\)\{1,\}| |g'
+++ local 'command_params=aws --profile kubernetes --region us-east-1 sts get-caller-identity --query '\''Account'\'' --output text'
+++ logging_process aws --profile kubernetes --region us-east-1 sts get-caller-identity --query ''\''Account'\''' --output text
+++ [[ -n aws ]]
+++ content=("${@}")
+++ local content
++++ date +%Y%m%d%H%M%S
+++ local timestamp=20200812184006
+++ [[ 68 -eq 0 ]]
+++ [[ true == true ]]
+++ [[ 68 -gt 0 ]]
+++ echo -e '20200812184006 = aws' --profile kubernetes --region us-east-1 sts get-caller-identity --query ''\''Account'\''' --output text
+++ return 0
+++ eval aws --profile kubernetes --region us-east-1 sts get-caller-identity --query ''\''Account'\''' --output text
++++ aws --profile kubernetes --region us-east-1 sts get-caller-identity --query Account --output text
++ export account_number=123456789012
++ account_number=123456789012
++ [[ true == true ]]
++ delete_k8scluster
++ tracking_process delete_k8scluster
++ [[ -n delete_k8scluster ]]
++ local func_params=delete_k8scluster
++ local func_name=delete_k8scluster
++ logging_process delete_k8scluster
++ [[ -n delete_k8scluster ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812184007
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812184007 = delete_k8scluster'
++ return 0
++ return 0
++ display_message 'Deleting Kubernetes Cluster: prototype.emvaldes.name ...'
++ newline
++ print
++ inline '\n'
++ echo -en '\n'
+
++ print 'Deleting Kubernetes Cluster: prototype.emvaldes.name ...'
++ inline 'Deleting Kubernetes Cluster: prototype.emvaldes.name ...\n'
++ echo -en 'Deleting Kubernetes Cluster: prototype.emvaldes.name ...\n'
+Deleting Kubernetes Cluster: prototype.emvaldes.name ...
++ services_console 's3       --profile kubernetes       sync s3://kubernetes-states--123456789012/prototype.emvaldes.name /Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype       --delete'
++ [[ -n s3       --profile kubernetes       sync s3://kubernetes-states--123456789012/prototype.emvaldes.name /Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype       --delete ]]
++ local 'command_params=s3       --profile kubernetes       sync s3://kubernetes-states--123456789012/prototype.emvaldes.name /Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype       --delete'
++ execute_command 'aws s3       --profile kubernetes       sync s3://kubernetes-states--123456789012/prototype.emvaldes.name /Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype       --delete'
++ [[ -n aws s3       --profile kubernetes       sync s3://kubernetes-states--123456789012/prototype.emvaldes.name /Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype       --delete ]]
+++ echo -e aws s3 --profile kubernetes sync s3://kubernetes-states--123456789012/prototype.emvaldes.name /Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype --delete
+++ sed -e 's|\([[:blank:]]\)\{1,\}| |g'
++ local 'command_params=aws s3 --profile kubernetes sync s3://kubernetes-states--123456789012/prototype.emvaldes.name /Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype --delete'
++ logging_process aws s3 --profile kubernetes sync s3://kubernetes-states--123456789012/prototype.emvaldes.name /Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype --delete
++ [[ -n aws ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812184007
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812184007 = aws' s3 --profile kubernetes sync s3://kubernetes-states--123456789012/prototype.emvaldes.name /Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype --delete
++ return 0
++ eval aws s3 --profile kubernetes sync s3://kubernetes-states--123456789012/prototype.emvaldes.name /Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype --delete
+++ aws s3 --profile kubernetes sync s3://kubernetes-states--123456789012/prototype.emvaldes.name /Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype --delete
++ kops_console 'delete cluster       --name=prototype.emvaldes.name       --state=s3://kubernetes-states--123456789012       --v 3       --yes'
++ [[ -n delete cluster       --name=prototype.emvaldes.name       --state=s3://kubernetes-states--123456789012       --v 3       --yes ]]
++ local 'command_params=delete cluster       --name=prototype.emvaldes.name       --state=s3://kubernetes-states--123456789012       --v 3       --yes'
++ execute_command 'kops delete cluster       --name=prototype.emvaldes.name       --state=s3://kubernetes-states--123456789012       --v 3       --yes'
++ [[ -n kops delete cluster       --name=prototype.emvaldes.name       --state=s3://kubernetes-states--123456789012       --v 3       --yes ]]
+++ echo -e kops delete cluster --name=prototype.emvaldes.name --state=s3://kubernetes-states--123456789012 --v 3 --yes
+++ sed -e 's|\([[:blank:]]\)\{1,\}| |g'
++ local 'command_params=kops delete cluster --name=prototype.emvaldes.name --state=s3://kubernetes-states--123456789012 --v 3 --yes'
++ logging_process kops delete cluster --name=prototype.emvaldes.name --state=s3://kubernetes-states--123456789012 --v 3 --yes
++ [[ -n kops ]]
++ content=("${@}")
++ local content
+++ date +%Y%m%d%H%M%S
++ local timestamp=20200812184010
++ [[ 68 -eq 0 ]]
++ [[ true == true ]]
++ [[ 68 -gt 0 ]]
++ echo -e '20200812184010 = kops' delete cluster --name=prototype.emvaldes.name --state=s3://kubernetes-states--123456789012 --v 3 --yes
++ return 0
++ eval kops delete cluster --name=prototype.emvaldes.name --state=s3://kubernetes-states--123456789012 --v 3 --yes
+++ kops delete cluster --name=prototype.emvaldes.name --state=s3://kubernetes-states--123456789012 --v 3 --yes
+I0812 18:40:11.439964    4568 featureflag.go:154] FeatureFlag "SpecOverrideFlag"=true
+I0812 18:40:11.462365    4568 factory.go:68] state store s3://kubernetes-states--123456789012
+I0812 18:40:12.339771    4568 s3context.go:210] found bucket in region "us-east-1"
+I0812 18:40:12.698483    4568 aws_cloud.go:1340] Querying EC2 for all valid zones in region "us-east-1"
+I0812 18:40:12.698605    4568 request_logger.go:45] AWS request: ec2/DescribeAvailabilityZones
+I0812 18:40:13.075230    4568 aws_cloud.go:565] Listing all Autoscaling groups matching cluster tags
+I0812 18:40:13.075344    4568 request_logger.go:45] AWS request: autoscaling/DescribeTags
+I0812 18:40:13.479680    4568 request_logger.go:45] AWS request: autoscaling/DescribeAutoScalingGroups
+I0812 18:40:13.650994    4568 aws.go:385] Querying EC2 instances
+I0812 18:40:13.651205    4568 request_logger.go:45] AWS request: ec2/DescribeInstances
+I0812 18:40:13.865418    4568 aws.go:699] Listing EC2 Keypairs
+I0812 18:40:13.865507    4568 request_logger.go:45] AWS request: ec2/DescribeKeyPairs
+I0812 18:40:13.998214    4568 securitygroup.go:129] Listing EC2 SecurityGroups
+I0812 18:40:13.998363    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:40:14.240728    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:40:14.369182    4568 aws.go:657] Listing EC2 Volumes
+I0812 18:40:14.369283    4568 request_logger.go:45] AWS request: ec2/DescribeVolumes
+I0812 18:40:14.572944    4568 aws.go:972] Listing EC2 DhcpOptions
+I0812 18:40:14.573069    4568 request_logger.go:45] AWS request: ec2/DescribeDhcpOptions
+I0812 18:40:14.712226    4568 aws.go:1082] Listing EC2 InternetGateways
+I0812 18:40:14.712410    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:40:14.853681    4568 routetable.go:36] Listing EC2 RouteTables
+I0812 18:40:14.853825    4568 request_logger.go:45] AWS request: ec2/DescribeRouteTables
+I0812 18:40:15.005983    4568 request_logger.go:45] AWS request: ec2/DescribeRouteTables
+I0812 18:40:15.122972    4568 aws.go:873] Listing EC2 subnets
+I0812 18:40:15.123112    4568 request_logger.go:45] AWS request: ec2/DescribeSubnets
+I0812 18:40:15.295947    4568 vpc.go:75] Listing EC2 VPC
+I0812 18:40:15.296073    4568 request_logger.go:45] AWS request: ec2/DescribeVpcs
+I0812 18:40:15.436290    4568 request_logger.go:45] AWS request: ec2/DescribeVpcs
+I0812 18:40:15.556421    4568 aws.go:1504] Listing all ELBs
+I0812 18:40:15.556617    4568 request_logger.go:45] AWS request: elasticloadbalancing/DescribeLoadBalancers
+I0812 18:40:16.077144    4568 request_logger.go:45] AWS request: elasticloadbalancing/DescribeTags
+I0812 18:40:16.166799    4568 aws.go:1597] Listing all NLBs and ALBs
+I0812 18:40:16.167024    4568 request_logger.go:45] AWS request: elasticloadbalancing/DescribeLoadBalancers
+I0812 18:40:16.254197    4568 aws.go:1679] Listing all TargetGroups
+I0812 18:40:16.254390    4568 request_logger.go:45] AWS request: elasticloadbalancing/DescribeTargetGroups
+I0812 18:40:16.330285    4568 aws.go:1820] Querying for all route53 zones
+I0812 18:40:16.330573    4568 request_logger.go:45] AWS request: route53/ListHostedZones
+I0812 18:40:16.900826    4568 aws.go:1845] Querying for records in zone: "emvaldes.name."
+I0812 18:40:16.901027    4568 request_logger.go:45] AWS request: route53/ListResourceRecordSets
+I0812 18:40:17.086297    4568 aws.go:1845] Querying for records in zone: "prototype.emvaldes.name."
+I0812 18:40:17.086431    4568 request_logger.go:45] AWS request: route53/ListResourceRecordSets
+I0812 18:40:17.310792    4568 request_logger.go:45] AWS request: iam/ListInstanceProfiles
+I0812 18:40:17.636986    4568 request_logger.go:45] AWS request: iam/ListRoles
+I0812 18:40:17.745610    4568 aws.go:1102] Listing all Internet Gateways
+I0812 18:40:17.745709    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:40:17.855735    4568 aws.go:1230] Finding all Autoscaling LaunchConfigurations by security group
+I0812 18:40:17.855866    4568 request_logger.go:45] AWS request: autoscaling/DescribeLaunchConfigurations
+I0812 18:40:17.969593    4568 aws.go:1188] Finding all Autoscaling LaunchTemplates associated to security groups
+I0812 18:40:17.969718    4568 request_logger.go:45] AWS request: ec2/DescribeLaunchTemplates
+I0812 18:40:18.093060    4568 aws.go:913] Listing all RouteTables
+I0812 18:40:18.093230    4568 request_logger.go:45] AWS request: ec2/DescribeRouteTables
+I0812 18:40:18.214791    4568 request_logger.go:45] AWS request: ec2/DescribeRouteTables
+TYPE			NAME											ID
+autoscaling-config	master-us-east-1a.masters.prototype.emvaldes.name-20200813010632			master-us-east-1a.masters.prototype.emvaldes.name-20200813010632
+autoscaling-config	master-us-east-1b.masters.prototype.emvaldes.name-20200813010632			master-us-east-1b.masters.prototype.emvaldes.name-20200813010632
+autoscaling-config	master-us-east-1c.masters.prototype.emvaldes.name-20200813010632			master-us-east-1c.masters.prototype.emvaldes.name-20200813010632
+autoscaling-config	nodes.prototype.emvaldes.name-20200813010632						nodes.prototype.emvaldes.name-20200813010632
+autoscaling-group	master-us-east-1a.masters.prototype.emvaldes.name					master-us-east-1a.masters.prototype.emvaldes.name
+autoscaling-group	master-us-east-1b.masters.prototype.emvaldes.name					master-us-east-1b.masters.prototype.emvaldes.name
+autoscaling-group	master-us-east-1c.masters.prototype.emvaldes.name					master-us-east-1c.masters.prototype.emvaldes.name
+autoscaling-group	nodes.prototype.emvaldes.name								nodes.prototype.emvaldes.name
+dhcp-options		prototype.emvaldes.name									dopt-08e6c9870bc01683f
+iam-instance-profile	masters.prototype.emvaldes.name								masters.prototype.emvaldes.name
+iam-instance-profile	nodes.prototype.emvaldes.name								nodes.prototype.emvaldes.name
+iam-role		masters.prototype.emvaldes.name								masters.prototype.emvaldes.name
+iam-role		nodes.prototype.emvaldes.name								nodes.prototype.emvaldes.name
+instance		master-us-east-1a.masters.prototype.emvaldes.name					i-028beabf4a3323fab
+instance		master-us-east-1b.masters.prototype.emvaldes.name					i-0587cfc6373ca2540
+instance		master-us-east-1c.masters.prototype.emvaldes.name					i-06b66714a1e40b553
+instance		nodes.prototype.emvaldes.name								i-0142ccff75fc6f21e
+instance		nodes.prototype.emvaldes.name								i-04b21d4331bd02f4f
+instance		nodes.prototype.emvaldes.name								i-0a76fb97b7a3966e6
+internet-gateway	prototype.emvaldes.name									igw-07119e21cd93c42f2
+keypair			kubernetes.prototype.emvaldes.name-0d:cf:ad:b7:cd:25:43:63:95:69:bb:9b:38:c1:5a:80	kubernetes.prototype.emvaldes.name-0d:cf:ad:b7:cd:25:43:63:95:69:bb:9b:38:c1:5a:80
+load-balancer													aed58aacd08184e589ca43ab9ba89a37
+route-table		prototype.emvaldes.name									rtb-09fe48ed99bd3e334
+route53-record		api.internal.prototype.emvaldes.name.							Z078482910DDL61ZGZW9V/api.internal.prototype.emvaldes.name.
+route53-record		api.prototype.emvaldes.name.								Z078482910DDL61ZGZW9V/api.prototype.emvaldes.name.
+security-group													sg-07bfde3754f174101
+security-group		masters.prototype.emvaldes.name								sg-01d289be7ddc46d1e
+security-group		nodes.prototype.emvaldes.name								sg-0fd70814f5965b363
+subnet			us-east-1a.prototype.emvaldes.name							subnet-0aee2843e2e4652cb
+subnet			us-east-1b.prototype.emvaldes.name							subnet-09da004034360e9a9
+subnet			us-east-1c.prototype.emvaldes.name							subnet-0762e2864946aaa4c
+volume			a.etcd-events.prototype.emvaldes.name							vol-0d67081fb615df430
+volume			a.etcd-main.prototype.emvaldes.name							vol-0ec32ebe8e38c01fa
+volume			b.etcd-events.prototype.emvaldes.name							vol-07582543c14747728
+volume			b.etcd-main.prototype.emvaldes.name							vol-0efdfcd8aeb3be94a
+volume			c.etcd-events.prototype.emvaldes.name							vol-00eadfb458267354f
+volume			c.etcd-main.prototype.emvaldes.name							vol-03e62ce5e8fc98edc
+vpc			prototype.emvaldes.name									vpc-04d354bcb5406c128
+
+I0812 18:40:18.346439    4568 delete.go:50] Dependencies
+I0812 18:40:18.346448    4568 delete.go:52] 	autoscaling-config:master-us-east-1b.masters.prototype.emvaldes.name-20200813010632	[autoscaling-group:master-us-east-1b.masters.prototype.emvaldes.name]
+I0812 18:40:18.346461    4568 delete.go:52] 	volume:vol-03e62ce5e8fc98edc	[instance:i-06b66714a1e40b553]
+I0812 18:40:18.346467    4568 delete.go:52] 	autoscaling-config:master-us-east-1c.masters.prototype.emvaldes.name-20200813010632	[autoscaling-group:master-us-east-1c.masters.prototype.emvaldes.name]
+I0812 18:40:18.346472    4568 delete.go:52] 	security-group:sg-07bfde3754f174101	[load-balancer:aed58aacd08184e589ca43ab9ba89a37]
+I0812 18:40:18.346477    4568 delete.go:52] 	subnet:subnet-09da004034360e9a9	[load-balancer:aed58aacd08184e589ca43ab9ba89a37 instance:i-0587cfc6373ca2540 instance:i-0a76fb97b7a3966e6 autoscaling-group:nodes.prototype.emvaldes.name autoscaling-group:master-us-east-1b.masters.prototype.emvaldes.name]
+I0812 18:40:18.346484    4568 delete.go:52] 	security-group:sg-0fd70814f5965b363	[instance:i-0a76fb97b7a3966e6 instance:i-0142ccff75fc6f21e instance:i-04b21d4331bd02f4f]
+I0812 18:40:18.346491    4568 delete.go:52] 	volume:vol-08df5e0f2b40ba493	[instance:i-028beabf4a3323fab]
+I0812 18:40:18.346496    4568 delete.go:52] 	autoscaling-group:master-us-east-1c.masters.prototype.emvaldes.name	[]
+I0812 18:40:18.346501    4568 delete.go:52] 	route53-record:Z078482910DDL61ZGZW9V/api.prototype.emvaldes.name.	[]
+I0812 18:40:18.346506    4568 delete.go:52] 	autoscaling-config:nodes.prototype.emvaldes.name-20200813010632	[autoscaling-group:nodes.prototype.emvaldes.name]
+I0812 18:40:18.346512    4568 delete.go:52] 	volume:vol-0b5129098c38f2ae0	[instance:i-0587cfc6373ca2540]
+I0812 18:40:18.346517    4568 delete.go:52] 	volume:vol-0efdfcd8aeb3be94a	[instance:i-0587cfc6373ca2540]
+I0812 18:40:18.346522    4568 delete.go:52] 	iam-instance-profile:nodes.prototype.emvaldes.name	[]
+I0812 18:40:18.346527    4568 delete.go:52] 	instance:i-028beabf4a3323fab	[]
+I0812 18:40:18.346532    4568 delete.go:52] 	vpc:vpc-04d354bcb5406c128	[internet-gateway:igw-07119e21cd93c42f2 load-balancer:aed58aacd08184e589ca43ab9ba89a37 subnet:subnet-09da004034360e9a9 instance:i-0587cfc6373ca2540 security-group:sg-0fd70814f5965b363 instance:i-0a76fb97b7a3966e6 instance:i-028beabf4a3323fab instance:i-0142ccff75fc6f21e instance:i-04b21d4331bd02f4f subnet:subnet-0aee2843e2e4652cb security-group:sg-01d289be7ddc46d1e security-group:sg-07bfde3754f174101 subnet:subnet-0762e2864946aaa4c instance:i-06b66714a1e40b553 route-table:rtb-09fe48ed99bd3e334]
+I0812 18:40:18.347482    4568 delete.go:52] 	volume:vol-0ec32ebe8e38c01fa	[instance:i-028beabf4a3323fab]
+I0812 18:40:18.347497    4568 delete.go:52] 	subnet:subnet-0762e2864946aaa4c	[load-balancer:aed58aacd08184e589ca43ab9ba89a37 instance:i-0142ccff75fc6f21e autoscaling-group:nodes.prototype.emvaldes.name autoscaling-group:master-us-east-1c.masters.prototype.emvaldes.name instance:i-06b66714a1e40b553]
+I0812 18:40:18.347507    4568 delete.go:52] 	subnet:subnet-0aee2843e2e4652cb	[load-balancer:aed58aacd08184e589ca43ab9ba89a37 instance:i-028beabf4a3323fab autoscaling-group:nodes.prototype.emvaldes.name instance:i-04b21d4331bd02f4f autoscaling-group:master-us-east-1a.masters.prototype.emvaldes.name]
+I0812 18:40:18.347514    4568 delete.go:52] 	autoscaling-group:master-us-east-1b.masters.prototype.emvaldes.name	[]
+I0812 18:40:18.347520    4568 delete.go:52] 	keypair:kubernetes.prototype.emvaldes.name-0d:cf:ad:b7:cd:25:43:63:95:69:bb:9b:38:c1:5a:80	[]
+I0812 18:40:18.347526    4568 delete.go:52] 	volume:vol-0d03441b18404846b	[instance:i-04b21d4331bd02f4f]
+I0812 18:40:18.347531    4568 delete.go:52] 	volume:vol-0928aafe2f036380f	[instance:i-06b66714a1e40b553]
+I0812 18:40:18.347536    4568 delete.go:52] 	autoscaling-config:master-us-east-1a.masters.prototype.emvaldes.name-20200813010632	[autoscaling-group:master-us-east-1a.masters.prototype.emvaldes.name]
+I0812 18:40:18.347541    4568 delete.go:52] 	security-group:sg-01d289be7ddc46d1e	[instance:i-0587cfc6373ca2540 instance:i-028beabf4a3323fab instance:i-06b66714a1e40b553]
+I0812 18:40:18.347547    4568 delete.go:52] 	iam-role:nodes.prototype.emvaldes.name	[]
+I0812 18:40:18.347552    4568 delete.go:52] 	volume:vol-095bbed7ee5260e6b	[instance:i-0142ccff75fc6f21e]
+I0812 18:40:18.347557    4568 delete.go:52] 	instance:i-0142ccff75fc6f21e	[]
+I0812 18:40:18.347562    4568 delete.go:52] 	route53-record:Z078482910DDL61ZGZW9V/api.internal.prototype.emvaldes.name.	[]
+I0812 18:40:18.347567    4568 delete.go:52] 	instance:i-06b66714a1e40b553	[]
+I0812 18:40:18.347819    4568 delete.go:52] 	load-balancer:aed58aacd08184e589ca43ab9ba89a37	[]
+I0812 18:40:18.347833    4568 delete.go:52] 	volume:vol-07582543c14747728	[instance:i-0587cfc6373ca2540]
+I0812 18:40:18.347840    4568 delete.go:52] 	volume:vol-00fbf88c5fe964df0	[instance:i-0a76fb97b7a3966e6]
+I0812 18:40:18.347846    4568 delete.go:52] 	instance:i-0a76fb97b7a3966e6	[]
+I0812 18:40:18.347851    4568 delete.go:52] 	instance:i-04b21d4331bd02f4f	[]
+I0812 18:40:18.347856    4568 delete.go:52] 	iam-instance-profile:masters.prototype.emvaldes.name	[]
+I0812 18:40:18.347861    4568 delete.go:52] 	instance:i-0587cfc6373ca2540	[]
+I0812 18:40:18.347865    4568 delete.go:52] 	volume:vol-0d67081fb615df430	[instance:i-028beabf4a3323fab]
+I0812 18:40:18.347871    4568 delete.go:52] 	autoscaling-group:master-us-east-1a.masters.prototype.emvaldes.name	[]
+I0812 18:40:18.347876    4568 delete.go:52] 	route-table:rtb-09fe48ed99bd3e334	[subnet:subnet-0aee2843e2e4652cb subnet:subnet-0762e2864946aaa4c subnet:subnet-09da004034360e9a9]
+I0812 18:40:18.347882    4568 delete.go:52] 	dhcp-options:dopt-08e6c9870bc01683f	[vpc:vpc-04d354bcb5406c128]
+I0812 18:40:18.347887    4568 delete.go:52] 	internet-gateway:igw-07119e21cd93c42f2	[]
+I0812 18:40:18.347893    4568 delete.go:52] 	volume:vol-00eadfb458267354f	[instance:i-06b66714a1e40b553]
+I0812 18:40:18.347898    4568 delete.go:52] 	autoscaling-group:nodes.prototype.emvaldes.name	[]
+I0812 18:40:18.347902    4568 delete.go:52] 	iam-role:masters.prototype.emvaldes.name	[]
+I0812 18:40:18.347978    4568 aws.go:317] Deleting EC2 instance "i-0587cfc6373ca2540"
+I0812 18:40:18.348048    4568 aws.go:317] Deleting EC2 instance "i-06b66714a1e40b553"
+I0812 18:40:18.348098    4568 request_logger.go:45] AWS request: ec2/TerminateInstances
+I0812 18:40:18.348098    4568 aws.go:1122] Deleting autoscaling group "master-us-east-1b.masters.prototype.emvaldes.name"
+I0812 18:40:18.348132    4568 aws.go:678] Deleting EC2 Keypair "kubernetes.prototype.emvaldes.name-0d:cf:ad:b7:cd:25:43:63:95:69:bb:9b:38:c1:5a:80"
+I0812 18:40:18.348145    4568 request_logger.go:45] AWS request: ec2/TerminateInstances
+I0812 18:40:18.348159    4568 aws.go:1406] Deleting ELB "aed58aacd08184e589ca43ab9ba89a37"
+I0812 18:40:18.348201    4568 aws.go:317] Deleting EC2 instance "i-028beabf4a3323fab"
+I0812 18:40:18.348203    4568 aws.go:1122] Deleting autoscaling group "master-us-east-1c.masters.prototype.emvaldes.name"
+I0812 18:40:18.348241    4568 request_logger.go:45] AWS request: ec2/DeleteKeyPair
+I0812 18:40:18.348254    4568 request_logger.go:45] AWS request: autoscaling/DeleteAutoScalingGroup
+I0812 18:40:18.348238    4568 aws.go:1122] Deleting autoscaling group "master-us-east-1a.masters.prototype.emvaldes.name"
+I0812 18:40:18.348291    4568 aws.go:317] Deleting EC2 instance "i-0a76fb97b7a3966e6"
+I0812 18:40:18.348114    4568 request_logger.go:45] AWS request: iam/ListRolePolicies
+I0812 18:40:18.348348    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:40:18.348349    4568 aws.go:2036] Removing role "nodes.prototype.emvaldes.name" from IAM instance profile "nodes.prototype.emvaldes.name"
+I0812 18:40:18.348456    4568 aws.go:317] Deleting EC2 instance "i-0142ccff75fc6f21e"
+I0812 18:40:18.348466    4568 aws.go:1789] Deleting route53 records "api.internal.prototype.emvaldes.name., api.prototype.emvaldes.name."
+I0812 18:40:18.348489    4568 request_logger.go:45] AWS request: ec2/TerminateInstances
+I0812 18:40:18.348535    4568 request_logger.go:45] AWS request: autoscaling/DeleteAutoScalingGroup
+I0812 18:40:18.348506    4568 aws.go:317] Deleting EC2 instance "i-04b21d4331bd02f4f"
+I0812 18:40:18.348553    4568 request_logger.go:45] AWS request: autoscaling/DeleteAutoScalingGroup
+I0812 18:40:18.348539    4568 aws.go:1122] Deleting autoscaling group "nodes.prototype.emvaldes.name"
+I0812 18:40:18.348435    4568 aws.go:2036] Removing role "masters.prototype.emvaldes.name" from IAM instance profile "masters.prototype.emvaldes.name"
+I0812 18:40:18.348628    4568 request_logger.go:45] AWS request: ec2/TerminateInstances
+I0812 18:40:18.348638    4568 request_logger.go:45] AWS request: elasticloadbalancing/DeleteLoadBalancer
+I0812 18:40:18.348679    4568 request_logger.go:45] AWS request: ec2/TerminateInstances
+I0812 18:40:18.348696    4568 request_logger.go:45] AWS request: autoscaling/DeleteAutoScalingGroup
+I0812 18:40:18.348701    4568 request_logger.go:45] AWS request: iam/RemoveRoleFromInstanceProfile
+I0812 18:40:18.348882    4568 request_logger.go:45] AWS request: iam/RemoveRoleFromInstanceProfile
+I0812 18:40:18.348889    4568 request_logger.go:45] AWS request: iam/ListRolePolicies
+I0812 18:40:18.348896    4568 request_logger.go:45] AWS request: route53/ChangeResourceRecordSets
+I0812 18:40:18.348919    4568 request_logger.go:45] AWS request: ec2/TerminateInstances
+I0812 18:40:18.442149    4568 request_logger.go:45] AWS request: iam/ListAttachedRolePolicies
+load-balancer:aed58aacd08184e589ca43ab9ba89a37	ok
+I0812 18:40:18.534773    4568 aws.go:2050] Deleting IAM instance profile "nodes.prototype.emvaldes.name"
+I0812 18:40:18.534901    4568 request_logger.go:45] AWS request: iam/DeleteInstanceProfile
+route53-record:Z078482910DDL61ZGZW9V/api.internal.prototype.emvaldes.name.	ok
+instance:i-0587cfc6373ca2540	ok
+autoscaling-group:master-us-east-1b.masters.prototype.emvaldes.name	ok
+I0812 18:40:18.625049    4568 aws.go:2050] Deleting IAM instance profile "masters.prototype.emvaldes.name"
+I0812 18:40:18.625152    4568 request_logger.go:45] AWS request: iam/DeleteInstanceProfile
+I0812 18:40:18.680309    4568 request_logger.go:45] AWS request: iam/ListAttachedRolePolicies
+I0812 18:40:18.684646    4568 aws.go:1946] Deleting IAM role policy "nodes.prototype.emvaldes.name" "nodes.prototype.emvaldes.name"
+I0812 18:40:18.684833    4568 request_logger.go:45] AWS request: iam/DeleteRolePolicy
+iam-instance-profile:nodes.prototype.emvaldes.name	ok
+iam-instance-profile:masters.prototype.emvaldes.name	ok
+I0812 18:40:18.720443    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:40:18.720526    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+I0812 18:40:18.769433    4568 aws.go:1946] Deleting IAM role policy "masters.prototype.emvaldes.name" "masters.prototype.emvaldes.name"
+I0812 18:40:18.769518    4568 request_logger.go:45] AWS request: iam/DeleteRolePolicy
+instance:i-06b66714a1e40b553	ok
+I0812 18:40:18.796711    4568 aws.go:1972] Deleting IAM role "nodes.prototype.emvaldes.name"
+keypair:kubernetes.prototype.emvaldes.name-0d:cf:ad:b7:cd:25:43:63:95:69:bb:9b:38:c1:5a:80	ok
+I0812 18:40:18.796881    4568 request_logger.go:45] AWS request: iam/DeleteRole
+instance:i-0a76fb97b7a3966e6	ok
+instance:i-028beabf4a3323fab	ok
+autoscaling-group:master-us-east-1a.masters.prototype.emvaldes.name	ok
+autoscaling-group:nodes.prototype.emvaldes.name	ok
+instance:i-04b21d4331bd02f4f	ok
+instance:i-0142ccff75fc6f21e	ok
+autoscaling-group:master-us-east-1c.masters.prototype.emvaldes.name	ok
+I0812 18:40:18.897399    4568 aws.go:1972] Deleting IAM role "masters.prototype.emvaldes.name"
+I0812 18:40:18.897509    4568 request_logger.go:45] AWS request: iam/DeleteRole
+iam-role:nodes.prototype.emvaldes.name	ok
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+iam-role:masters.prototype.emvaldes.name	ok
+I0812 18:40:19.016161    4568 aws.go:1390] Deleting autoscaling LaunchConfiguration "nodes.prototype.emvaldes.name-20200813010632"
+I0812 18:40:19.016176    4568 aws.go:1390] Deleting autoscaling LaunchConfiguration "master-us-east-1c.masters.prototype.emvaldes.name-20200813010632"
+I0812 18:40:19.016187    4568 aws.go:1390] Deleting autoscaling LaunchConfiguration "master-us-east-1a.masters.prototype.emvaldes.name-20200813010632"
+I0812 18:40:19.016212    4568 aws.go:1390] Deleting autoscaling LaunchConfiguration "master-us-east-1b.masters.prototype.emvaldes.name-20200813010632"
+I0812 18:40:19.016220    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:40:19.016256    4568 aws.go:571] Deleting EC2 Volume "vol-07582543c14747728"
+I0812 18:40:19.016270    4568 aws.go:571] Deleting EC2 Volume "vol-0ec32ebe8e38c01fa"
+I0812 18:40:19.016289    4568 request_logger.go:45] AWS request: autoscaling/DeleteLaunchConfiguration
+I0812 18:40:19.016289    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:40:19.016289    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:40:19.016311    4568 request_logger.go:45] AWS request: autoscaling/DeleteLaunchConfiguration
+I0812 18:40:19.016316    4568 aws.go:571] Deleting EC2 Volume "vol-03e62ce5e8fc98edc"
+I0812 18:40:19.016276    4568 request_logger.go:45] AWS request: autoscaling/DeleteLaunchConfiguration
+I0812 18:40:19.016369    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:40:19.016385    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:19.016405    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:19.016418    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:19.016185    4568 aws.go:734] Deleting EC2 Subnet "subnet-0762e2864946aaa4c"
+I0812 18:40:19.016451    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:40:19.016197    4568 aws.go:571] Deleting EC2 Volume "vol-0efdfcd8aeb3be94a"
+I0812 18:40:19.016165    4568 aws.go:734] Deleting EC2 Subnet "subnet-0aee2843e2e4652cb"
+I0812 18:40:19.016519    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:40:19.016293    4568 aws.go:571] Deleting EC2 Volume "vol-0d67081fb615df430"
+I0812 18:40:19.016586    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:40:19.016303    4568 aws.go:571] Deleting EC2 Volume "vol-00eadfb458267354f"
+I0812 18:40:19.016624    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:19.016627    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:19.016317    4568 request_logger.go:45] AWS request: autoscaling/DeleteLaunchConfiguration
+I0812 18:40:19.016691    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:19.172009    4568 request_logger.go:45] AWS request: ec2/RevokeSecurityGroupIngress
+I0812 18:40:19.191067    4568 request_logger.go:45] AWS request: ec2/RevokeSecurityGroupIngress
+autoscaling-config:master-us-east-1b.masters.prototype.emvaldes.name-20200813010632	ok
+autoscaling-config:nodes.prototype.emvaldes.name-20200813010632	ok
+volume:vol-07582543c14747728	still has dependencies, will retry
+I0812 18:40:19.450840    4568 request_logger.go:45] AWS request: ec2/RevokeSecurityGroupIngress
+volume:vol-0efdfcd8aeb3be94a	still has dependencies, will retry
+autoscaling-config:master-us-east-1a.masters.prototype.emvaldes.name-20200813010632	ok
+autoscaling-config:master-us-east-1c.masters.prototype.emvaldes.name-20200813010632	ok
+volume:vol-03e62ce5e8fc98edc	still has dependencies, will retry
+I0812 18:40:19.517310    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-07bfde3754f174101"
+I0812 18:40:19.517503    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+volume:vol-00eadfb458267354f	still has dependencies, will retry
+I0812 18:40:19.543139    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-01d289be7ddc46d1e"
+I0812 18:40:19.543254    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+volume:vol-0ec32ebe8e38c01fa	still has dependencies, will retry
+volume:vol-0d67081fb615df430	still has dependencies, will retry
+subnet:subnet-0762e2864946aaa4c	still has dependencies, will retry
+subnet:subnet-0aee2843e2e4652cb	still has dependencies, will retry
+I0812 18:40:19.780066    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:40:19.780193    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+security-group:sg-07bfde3754f174101	still has dependencies, will retry
+security-group:sg-01d289be7ddc46d1e	still has dependencies, will retry
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	volume:vol-0d67081fb615df430
+	volume:vol-03e62ce5e8fc98edc
+	subnet:subnet-0aee2843e2e4652cb
+	security-group:sg-07bfde3754f174101
+	subnet:subnet-0762e2864946aaa4c
+	volume:vol-07582543c14747728
+	security-group:sg-01d289be7ddc46d1e
+	volume:vol-0efdfcd8aeb3be94a
+	route-table:rtb-09fe48ed99bd3e334
+	dhcp-options:dopt-08e6c9870bc01683f
+	internet-gateway:igw-07119e21cd93c42f2
+	volume:vol-0ec32ebe8e38c01fa
+	volume:vol-00eadfb458267354f
+	security-group:sg-0fd70814f5965b363
+	subnet:subnet-09da004034360e9a9
+	vpc:vpc-04d354bcb5406c128
+I0812 18:40:30.117351    4568 aws.go:734] Deleting EC2 Subnet "subnet-0aee2843e2e4652cb"
+I0812 18:40:30.117374    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:40:30.117383    4568 aws.go:571] Deleting EC2 Volume "vol-0ec32ebe8e38c01fa"
+I0812 18:40:30.117410    4568 aws.go:571] Deleting EC2 Volume "vol-07582543c14747728"
+I0812 18:40:30.117449    4568 aws.go:734] Deleting EC2 Subnet "subnet-0762e2864946aaa4c"
+I0812 18:40:30.117460    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:40:30.117467    4568 aws.go:571] Deleting EC2 Volume "vol-03e62ce5e8fc98edc"
+I0812 18:40:30.117497    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:40:30.117454    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:40:30.117521    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:30.117522    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:40:30.117534    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:40:30.117372    4568 aws.go:571] Deleting EC2 Volume "vol-0d67081fb615df430"
+I0812 18:40:30.117370    4568 aws.go:571] Deleting EC2 Volume "vol-00eadfb458267354f"
+I0812 18:40:30.117359    4568 aws.go:571] Deleting EC2 Volume "vol-0efdfcd8aeb3be94a"
+I0812 18:40:30.117472    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:40:30.117650    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:30.117658    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:30.117474    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:30.117545    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:30.117547    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:40:30.117772    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:30.361861    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-07bfde3754f174101"
+I0812 18:40:30.361947    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+volume:vol-0efdfcd8aeb3be94a	still has dependencies, will retry
+I0812 18:40:30.502865    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:40:30.502984    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+I0812 18:40:30.503675    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:40:30.503802    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 18:40:30.518963    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-01d289be7ddc46d1e"
+I0812 18:40:30.519042    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+volume:vol-00eadfb458267354f	still has dependencies, will retry
+volume:vol-03e62ce5e8fc98edc	still has dependencies, will retry
+volume:vol-0ec32ebe8e38c01fa	still has dependencies, will retry
+volume:vol-0d67081fb615df430	still has dependencies, will retry
+volume:vol-07582543c14747728	still has dependencies, will retry
+security-group:sg-07bfde3754f174101	still has dependencies, will retry
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+subnet:subnet-0aee2843e2e4652cb	still has dependencies, will retry
+subnet:subnet-0762e2864946aaa4c	still has dependencies, will retry
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+security-group:sg-01d289be7ddc46d1e	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	dhcp-options:dopt-08e6c9870bc01683f
+	internet-gateway:igw-07119e21cd93c42f2
+	volume:vol-0ec32ebe8e38c01fa
+	volume:vol-00eadfb458267354f
+	security-group:sg-0fd70814f5965b363
+	subnet:subnet-09da004034360e9a9
+	vpc:vpc-04d354bcb5406c128
+	volume:vol-03e62ce5e8fc98edc
+	volume:vol-0d67081fb615df430
+	subnet:subnet-0aee2843e2e4652cb
+	security-group:sg-07bfde3754f174101
+	subnet:subnet-0762e2864946aaa4c
+	volume:vol-07582543c14747728
+	security-group:sg-01d289be7ddc46d1e
+	route-table:rtb-09fe48ed99bd3e334
+	volume:vol-0efdfcd8aeb3be94a
+I0812 18:40:40.951155    4568 aws.go:571] Deleting EC2 Volume "vol-0d67081fb615df430"
+I0812 18:40:40.951175    4568 aws.go:734] Deleting EC2 Subnet "subnet-0762e2864946aaa4c"
+I0812 18:40:40.951187    4568 aws.go:571] Deleting EC2 Volume "vol-07582543c14747728"
+I0812 18:40:40.951231    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:40:40.951239    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:40:40.951261    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:40.951292    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:40.951196    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:40:40.951314    4568 aws.go:571] Deleting EC2 Volume "vol-0efdfcd8aeb3be94a"
+I0812 18:40:40.951243    4568 aws.go:571] Deleting EC2 Volume "vol-0ec32ebe8e38c01fa"
+I0812 18:40:40.951363    4568 aws.go:571] Deleting EC2 Volume "vol-03e62ce5e8fc98edc"
+I0812 18:40:40.951289    4568 aws.go:571] Deleting EC2 Volume "vol-00eadfb458267354f"
+I0812 18:40:40.951382    4568 aws.go:734] Deleting EC2 Subnet "subnet-0aee2843e2e4652cb"
+I0812 18:40:40.951302    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:40:40.951471    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:40:40.951161    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:40:40.951492    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:40.951498    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:40:40.951479    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:40.951521    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:40.951523    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:40.951635    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:40:41.209632    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-07bfde3754f174101"
+I0812 18:40:41.209765    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 18:40:41.342512    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-01d289be7ddc46d1e"
+I0812 18:40:41.342630    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 18:40:41.345363    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:40:41.345454    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+volume:vol-0efdfcd8aeb3be94a	still has dependencies, will retry
+volume:vol-07582543c14747728	still has dependencies, will retry
+volume:vol-00eadfb458267354f	still has dependencies, will retry
+volume:vol-0ec32ebe8e38c01fa	still has dependencies, will retry
+volume:vol-03e62ce5e8fc98edc	still has dependencies, will retry
+volume:vol-0d67081fb615df430	still has dependencies, will retry
+I0812 18:40:41.453850    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:40:41.453938    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+subnet:subnet-0762e2864946aaa4c	still has dependencies, will retry
+subnet:subnet-0aee2843e2e4652cb	still has dependencies, will retry
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+security-group:sg-07bfde3754f174101	still has dependencies, will retry
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+security-group:sg-01d289be7ddc46d1e	still has dependencies, will retry
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	volume:vol-0ec32ebe8e38c01fa
+	volume:vol-00eadfb458267354f
+	security-group:sg-0fd70814f5965b363
+	subnet:subnet-09da004034360e9a9
+	vpc:vpc-04d354bcb5406c128
+	volume:vol-0d67081fb615df430
+	volume:vol-03e62ce5e8fc98edc
+	subnet:subnet-0aee2843e2e4652cb
+	security-group:sg-07bfde3754f174101
+	subnet:subnet-0762e2864946aaa4c
+	volume:vol-07582543c14747728
+	security-group:sg-01d289be7ddc46d1e
+	volume:vol-0efdfcd8aeb3be94a
+	route-table:rtb-09fe48ed99bd3e334
+	dhcp-options:dopt-08e6c9870bc01683f
+	internet-gateway:igw-07119e21cd93c42f2
+I0812 18:40:51.721155    4568 aws.go:571] Deleting EC2 Volume "vol-00eadfb458267354f"
+I0812 18:40:51.721187    4568 aws.go:734] Deleting EC2 Subnet "subnet-0762e2864946aaa4c"
+I0812 18:40:51.721192    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:40:51.721213    4568 aws.go:571] Deleting EC2 Volume "vol-0efdfcd8aeb3be94a"
+I0812 18:40:51.721242    4568 aws.go:571] Deleting EC2 Volume "vol-07582543c14747728"
+I0812 18:40:51.721263    4568 aws.go:571] Deleting EC2 Volume "vol-03e62ce5e8fc98edc"
+I0812 18:40:51.721287    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:40:51.721321    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:40:51.721292    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:51.721340    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:51.721351    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:51.721176    4568 aws.go:571] Deleting EC2 Volume "vol-0d67081fb615df430"
+I0812 18:40:51.721404    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:40:51.721159    4568 aws.go:734] Deleting EC2 Subnet "subnet-0aee2843e2e4652cb"
+I0812 18:40:51.721462    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:40:51.721497    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:51.721291    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:40:51.721318    4568 aws.go:571] Deleting EC2 Volume "vol-0ec32ebe8e38c01fa"
+I0812 18:40:51.721410    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:51.721418    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:40:51.721552    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:40:51.721652    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:40:52.102475    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:40:52.102574    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+volume:vol-07582543c14747728	still has dependencies, will retry
+volume:vol-0efdfcd8aeb3be94a	still has dependencies, will retry
+volume:vol-0ec32ebe8e38c01fa	ok
+volume:vol-0d67081fb615df430	ok
+volume:vol-00eadfb458267354f	still has dependencies, will retry
+I0812 18:40:52.193119    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-01d289be7ddc46d1e"
+I0812 18:40:52.193200    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 18:40:52.196465    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-07bfde3754f174101"
+I0812 18:40:52.196568    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 18:40:52.199654    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:40:52.199708    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+volume:vol-03e62ce5e8fc98edc	still has dependencies, will retry
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+subnet:subnet-0762e2864946aaa4c	still has dependencies, will retry
+subnet:subnet-0aee2843e2e4652cb	still has dependencies, will retry
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+security-group:sg-07bfde3754f174101	ok
+security-group:sg-01d289be7ddc46d1e	still has dependencies, will retry
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	security-group:sg-0fd70814f5965b363
+	subnet:subnet-09da004034360e9a9
+	volume:vol-00eadfb458267354f
+	vpc:vpc-04d354bcb5406c128
+	volume:vol-03e62ce5e8fc98edc
+	subnet:subnet-0aee2843e2e4652cb
+	subnet:subnet-0762e2864946aaa4c
+	volume:vol-07582543c14747728
+	security-group:sg-01d289be7ddc46d1e
+	volume:vol-0efdfcd8aeb3be94a
+	route-table:rtb-09fe48ed99bd3e334
+	dhcp-options:dopt-08e6c9870bc01683f
+	internet-gateway:igw-07119e21cd93c42f2
+I0812 18:41:02.467022    4568 aws.go:571] Deleting EC2 Volume "vol-03e62ce5e8fc98edc"
+I0812 18:41:02.467052    4568 aws.go:734] Deleting EC2 Subnet "subnet-0762e2864946aaa4c"
+I0812 18:41:02.467071    4568 aws.go:571] Deleting EC2 Volume "vol-00eadfb458267354f"
+I0812 18:41:02.467103    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:41:02.467134    4568 aws.go:571] Deleting EC2 Volume "vol-07582543c14747728"
+I0812 18:41:02.467151    4568 aws.go:571] Deleting EC2 Volume "vol-0efdfcd8aeb3be94a"
+I0812 18:41:02.467188    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:41:02.467207    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:41:02.467214    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:41:02.467249    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:41:02.467142    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:41:02.467264    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:41:02.467033    4568 aws.go:734] Deleting EC2 Subnet "subnet-0aee2843e2e4652cb"
+I0812 18:41:02.467138    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:41:02.467148    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:41:02.467475    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:41:02.467155    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:41:02.596267    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:41:02.596366    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+volume:vol-00eadfb458267354f	ok
+volume:vol-0efdfcd8aeb3be94a	still has dependencies, will retry
+volume:vol-07582543c14747728	still has dependencies, will retry
+volume:vol-03e62ce5e8fc98edc	ok
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+I0812 18:41:02.932088    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-01d289be7ddc46d1e"
+I0812 18:41:02.932204    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+I0812 18:41:02.955885    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:41:02.955992    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+subnet:subnet-0762e2864946aaa4c	ok
+subnet:subnet-0aee2843e2e4652cb	ok
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+security-group:sg-01d289be7ddc46d1e	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	volume:vol-07582543c14747728
+	security-group:sg-01d289be7ddc46d1e
+	volume:vol-0efdfcd8aeb3be94a
+	route-table:rtb-09fe48ed99bd3e334
+	dhcp-options:dopt-08e6c9870bc01683f
+	internet-gateway:igw-07119e21cd93c42f2
+	security-group:sg-0fd70814f5965b363
+	subnet:subnet-09da004034360e9a9
+	vpc:vpc-04d354bcb5406c128
+I0812 18:41:13.520625    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:41:13.520649    4568 aws.go:571] Deleting EC2 Volume "vol-0efdfcd8aeb3be94a"
+I0812 18:41:13.520638    4568 aws.go:571] Deleting EC2 Volume "vol-07582543c14747728"
+I0812 18:41:13.520708    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:41:13.520718    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:41:13.520728    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:41:13.520740    4568 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 18:41:13.520741    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:41:13.520757    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:41:13.738480    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-01d289be7ddc46d1e"
+I0812 18:41:13.738678    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 18:41:13.745418    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:41:13.745514    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 18:41:13.881559    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:41:13.881661    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+volume:vol-0efdfcd8aeb3be94a	ok
+volume:vol-07582543c14747728	ok
+security-group:sg-01d289be7ddc46d1e	still has dependencies, will retry
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	route-table:rtb-09fe48ed99bd3e334
+	dhcp-options:dopt-08e6c9870bc01683f
+	internet-gateway:igw-07119e21cd93c42f2
+	security-group:sg-0fd70814f5965b363
+	subnet:subnet-09da004034360e9a9
+	vpc:vpc-04d354bcb5406c128
+	security-group:sg-01d289be7ddc46d1e
+I0812 18:41:24.119342    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:41:24.119417    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:41:24.119491    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:41:24.119417    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:41:24.119515    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:41:24.258218    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:41:24.258375    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+I0812 18:41:24.349653    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-01d289be7ddc46d1e"
+I0812 18:41:24.349730    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 18:41:24.417727    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:41:24.417899    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+security-group:sg-01d289be7ddc46d1e	ok
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	route-table:rtb-09fe48ed99bd3e334
+	internet-gateway:igw-07119e21cd93c42f2
+	dhcp-options:dopt-08e6c9870bc01683f
+	security-group:sg-0fd70814f5965b363
+	subnet:subnet-09da004034360e9a9
+	vpc:vpc-04d354bcb5406c128
+I0812 18:41:34.761964    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:41:34.762070    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:41:34.762073    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:41:34.762071    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:41:34.896454    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:41:34.896667    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+I0812 18:41:34.978526    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:41:34.978637    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	security-group:sg-0fd70814f5965b363
+	subnet:subnet-09da004034360e9a9
+	vpc:vpc-04d354bcb5406c128
+	route-table:rtb-09fe48ed99bd3e334
+	dhcp-options:dopt-08e6c9870bc01683f
+	internet-gateway:igw-07119e21cd93c42f2
+I0812 18:41:45.273616    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:41:45.273713    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:41:45.273713    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:41:45.273714    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:41:45.412089    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:41:45.412298    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+I0812 18:41:45.486427    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:41:45.486519    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	vpc:vpc-04d354bcb5406c128
+	route-table:rtb-09fe48ed99bd3e334
+	dhcp-options:dopt-08e6c9870bc01683f
+	internet-gateway:igw-07119e21cd93c42f2
+	security-group:sg-0fd70814f5965b363
+	subnet:subnet-09da004034360e9a9
+I0812 18:41:55.777662    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:41:55.777802    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:41:55.777828    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:41:55.777840    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:41:55.915005    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:41:55.915176    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+I0812 18:41:56.014430    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:41:56.014527    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	route-table:rtb-09fe48ed99bd3e334
+	dhcp-options:dopt-08e6c9870bc01683f
+	internet-gateway:igw-07119e21cd93c42f2
+	security-group:sg-0fd70814f5965b363
+	subnet:subnet-09da004034360e9a9
+	vpc:vpc-04d354bcb5406c128
+I0812 18:42:06.285599    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:42:06.285694    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:42:06.285705    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:42:06.285710    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:42:06.511623    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:42:06.511738    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 18:42:06.647197    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:42:06.647322    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	security-group:sg-0fd70814f5965b363
+	subnet:subnet-09da004034360e9a9
+	vpc:vpc-04d354bcb5406c128
+	route-table:rtb-09fe48ed99bd3e334
+	dhcp-options:dopt-08e6c9870bc01683f
+	internet-gateway:igw-07119e21cd93c42f2
+I0812 18:42:16.890481    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:42:16.890581    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:42:16.890593    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:42:16.890583    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:42:17.024204    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:42:17.024330    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+I0812 18:42:17.321395    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:42:17.321565    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	route-table:rtb-09fe48ed99bd3e334
+	dhcp-options:dopt-08e6c9870bc01683f
+	internet-gateway:igw-07119e21cd93c42f2
+	security-group:sg-0fd70814f5965b363
+	subnet:subnet-09da004034360e9a9
+	vpc:vpc-04d354bcb5406c128
+I0812 18:42:27.588957    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:42:27.589126    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:42:27.589143    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:42:27.589143    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:42:27.815847    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:42:27.816013    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 18:42:27.940970    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:42:27.941067    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	security-group:sg-0fd70814f5965b363
+	subnet:subnet-09da004034360e9a9
+	vpc:vpc-04d354bcb5406c128
+	route-table:rtb-09fe48ed99bd3e334
+	dhcp-options:dopt-08e6c9870bc01683f
+	internet-gateway:igw-07119e21cd93c42f2
+I0812 18:42:38.210077    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:42:38.210176    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:42:38.210190    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:42:38.210176    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:42:38.582038    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:42:38.582209    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+I0812 18:42:38.675698    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:42:38.675832    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	dhcp-options:dopt-08e6c9870bc01683f
+	internet-gateway:igw-07119e21cd93c42f2
+	security-group:sg-0fd70814f5965b363
+	subnet:subnet-09da004034360e9a9
+	vpc:vpc-04d354bcb5406c128
+	route-table:rtb-09fe48ed99bd3e334
+I0812 18:42:48.941383    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:42:48.941517    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:42:48.941551    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:42:48.941517    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:43:00.349481    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:43:00.349569    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+I0812 18:43:00.468697    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:43:00.468767    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	route-table:rtb-09fe48ed99bd3e334
+	dhcp-options:dopt-08e6c9870bc01683f
+	internet-gateway:igw-07119e21cd93c42f2
+	subnet:subnet-09da004034360e9a9
+	security-group:sg-0fd70814f5965b363
+	vpc:vpc-04d354bcb5406c128
+I0812 18:43:10.722448    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:43:10.722551    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:43:10.722577    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:43:10.722554    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:43:11.116883    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:43:11.117072    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+I0812 18:43:11.190446    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:43:11.190570    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+subnet:subnet-09da004034360e9a9	still has dependencies, will retry
+internet-gateway:igw-07119e21cd93c42f2	still has dependencies, will retry
+security-group:sg-0fd70814f5965b363	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	dhcp-options:dopt-08e6c9870bc01683f
+	internet-gateway:igw-07119e21cd93c42f2
+	security-group:sg-0fd70814f5965b363
+	subnet:subnet-09da004034360e9a9
+	vpc:vpc-04d354bcb5406c128
+	route-table:rtb-09fe48ed99bd3e334
+I0812 18:43:21.486965    4568 aws.go:734] Deleting EC2 Subnet "subnet-09da004034360e9a9"
+I0812 18:43:21.487019    4568 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 18:43:21.487074    4568 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 18:43:21.487110    4568 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 18:43:21.865777    4568 aws.go:1013] Detaching EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:43:21.865897    4568 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+I0812 18:43:21.955083    4568 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0fd70814f5965b363"
+I0812 18:43:21.955178    4568 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+subnet:subnet-09da004034360e9a9	ok
+I0812 18:43:22.108993    4568 aws.go:1028] Deleting EC2 InternetGateway "igw-07119e21cd93c42f2"
+I0812 18:43:22.109122    4568 request_logger.go:45] AWS request: ec2/DeleteInternetGateway
+security-group:sg-0fd70814f5965b363	ok
+internet-gateway:igw-07119e21cd93c42f2	ok
+I0812 18:43:22.310402    4568 aws.go:890] Deleting EC2 RouteTable "rtb-09fe48ed99bd3e334"
+I0812 18:43:22.310594    4568 request_logger.go:45] AWS request: ec2/DeleteRouteTable
+route-table:rtb-09fe48ed99bd3e334	ok
+I0812 18:43:22.509856    4568 vpc.go:36] Deleting EC2 VPC "vpc-04d354bcb5406c128"
+I0812 18:43:22.509946    4568 request_logger.go:45] AWS request: ec2/DeleteVpc
+vpc:vpc-04d354bcb5406c128	ok
+I0812 18:43:22.897541    4568 aws.go:928] Deleting EC2 DhcpOptions "dopt-08e6c9870bc01683f"
+I0812 18:43:22.897679    4568 request_logger.go:45] AWS request: ec2/DeleteDhcpOptions
+dhcp-options:dopt-08e6c9870bc01683f	ok
+W0812 18:43:35.430076    4568 delete_cluster.go:211] error removing kube config: error loading kubeconfig: error loading config file "/Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype/config": no kind "Cluster" is registered for version "kops.k8s.io/v1alpha2" in scheme "pkg/runtime/scheme.go:101"
+
+Deleted cluster: "prototype.emvaldes.name"
++ debugging_process 0
++ [[ 3 == true ]]
++ return 0
++ continue_process
++ [[ 0 -eq 0 ]]
++ message='Continue [Y/n]?: '
++ continue_response=false
++ [[ false == true ]]
++ continue_response=true
++ return 0
++ return 0
++ return 0
+
+real	3m38.742s
+user	0m6.224s
+sys	0m2.640s

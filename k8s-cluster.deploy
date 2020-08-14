@@ -1,0 +1,40 @@
+#!/bin/bash
+## Version: 0.1.0
+
+script_name=$(basename ${0});
+
+## System/Profile container(s):
+
+usr_local="${HOME}"; mkdir -p ${usr_local};
+local_bin="${usr_local}/bin"; mkdir -pv ${local_bin};
+local_etc="${usr_local}/etc"; mkdir -pv ${local_etc};
+
+echo ${PATH}|grep "${HOME}/bin" &>/dev/null;
+result=${?};
+if [[ ${result} -ne 0 ]]; then
+  echo -e "Warning: [${local_bin}] is not in \${PATH} ! ";
+  exit 1;
+fi;
+
+declare -a xfiles=(
+    k8s-cluster.shell
+  );
+for xfile in "${xfiles[@]}"; do
+  target="${local_bin}/${xfile}";
+  cp -v ${xfile} ${target/.shell/};
+done;
+
+target_path="${local_etc}/k8s-cluster";
+mkdir -p ${target_path};
+
+declare -a xfiles=(
+    k8s-cluster.functions
+    k8s-cluster.help
+    k8s-cluster.create.help
+    k8s-cluster.delete.help
+    k8s-cluster.variables
+  );
+for xfile in "${xfiles[@]}"; do
+  target="${target_path}/${xfile}";
+  cp -v ${xfile} ${target};
+done;

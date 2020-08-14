@@ -1,0 +1,271 @@
+#!/bin/bash
+## Version: 0.1.0
+
+## source ${HOME}/.bash.functions;
+script_name=$(basename ${0});
+
+export clusters_path="${local_tmp}/clusters";
+export CALLER_SCRIPT="${clusters_path}/${script_name}/logger/${script_name}.log";
+
+mkdir -p $(dirname ${CALLER_SCRIPT});
+mkdir -p ${clusters_path}/${script_name}/{docker,configs};
+
+## System/Profile container(s):
+
+usr_local="${HOME}"; mkdir -p ${usr_local};
+local_bin="${usr_local}/bin"; mkdir -p ${local_bin};
+local_etc="${usr_local}/etc"; mkdir -p ${local_etc};
+local_tmp="/tmp"; mkdir -p ${local_tmp};
+
+declare -a xfiles=(
+    devops-cloud.variables
+    devops-tools.variables
+    devops-cloud.functions
+    devops-tools.functions
+  );
+for xfile in "${xfiles[@]}"; do
+  shared_cloud=${xfile};
+  shared_module="${local_etc}/${shared_cloud##*\.}/${shared_cloud}";
+  if [[ ! -e ${shared_module} ]]; then
+          curl --silent --output ${shared_module} --location --remote-name \
+          ${github_private}/${devops_project}/blob/master/${shared_cloud##*\.}/${shared_cloud};
+          result=$?; if [[ ${result} -gt 0 ]]; then
+            display_message "Warning: [${shared_module}] was not found! ";
+            exit 1;
+          fi;
+    else  source ${shared_module};
+  fi;
+done;
+
+declare -a xfiles=(
+    k8s-cluster.functions
+    k8s-cluster.variables
+    k8s-cluster.help
+    k8s-cluster.create.help
+    k8s-cluster.delete.help
+  );
+for xfile in "${xfiles[@]}"; do
+  target="${local_etc}/k8s-cluster/${xfile}";
+  if [[ -e ${target} ]]; then source ${target};
+    else display_message "Warning: [${target}] was not found! ";
+         exit 2;
+  fi;
+done;
+
+declare -a xfiles=(
+    devops-tools.functions
+    devops-install.functions
+  );
+for xfile in "${xfiles[@]}"; do
+  target="${local_etc}/functions/${xfile}";
+  if [[ -e ${target} ]]; then source ${target};
+    else display_message "Warning: [${target}] was not found! ";
+         exit 2;
+  fi;
+done;
+
+function k8s_cluster () {
+    tracking_process ${FUNCNAME} "${@}";
+    oIFS="${IFS}";
+    for xitem in "${@}"; do
+      IFS='='; set `echo -e "${xitem}" | sed -e 's/--//g'`
+      [[ ${1#*\--} = "access-pubkey" ]] && export access_pubkey="${2}";
+      [[ ${1#*\--} = "cluster-name" ]] && export cluster_name="${2}";
+      if [[ ${1#*\--} = "create-cluster" ]]; then
+        export target_cluster="${2}";
+        deploy_cluster=true;
+      fi;
+      [[ ${1#*\--} = "debug" ]] && export debug_mode=true;
+      if [[ ${1#*\--} = "delete-cluster" ]]; then
+        export target_cluster="${2}";
+        delete_cluster=true;
+      fi;
+      [[ ${1#*\--} = "deploy-cluster" ]] && export deploy_cluster=true;
+      [[ ${1#*\--} = "deploy-dashboard" ]] && export deploy_dashboard=true;
+      [[ ${1#*\--} = "deploy-prometheus" ]] && export deploy_prometheus=true;
+      [[ ${1#*\--} = "deploy-prototype" ]] && export deploy_prototype=true;
+      if [[ ${1#*\--} = "describe-cluster" ]]; then
+        export target_cluster="${2}";
+        describe_cluster=true;
+      fi;
+      [[ ${1#*\--} = "domain-name" ]] && export domain_name="${2}";
+      [[ ${1#*\--} = "enable-cloudwatch" ]] && export enable_cloudwatch=true;
+      [[ ${1#*\--} = "help-create" ]] && export describe_create=true;
+      [[ ${1#*\--} = "help-delete" ]] && export describe_delete=true;
+      [[ ${1#*\--} = "interactive" ]] && export interactive_mode=true;
+      [[ ${1#*\--} = "kubeconfig" ]] && export KUBECONFIG=${2};
+      [[ ${1#*\--} = "profile" ]] && export default_profile="${2}";
+      [[ ${1#*\--} = "region" ]] && export default_region="${2}";
+      [[ ${1#*\--} = "target-cluster" ]] && export target_cluster="${2}";
+      [[ ${1#*\--} = "zones" ]] && export default_zones="${2}";
+      ## [[ ${1#*\--} = "dry-run" ]] && export dry_run="${2}";
+      [[ ${1#*\--} = "verbose" ]] && export verbose=true;
+      [[ ${1#*\--} = "help" ]] && export display_help=true;
+    done; IFS="${oIFS}";
+    ## Define custom-parameter(s):
+    [[ ${#delete_cluster} -eq 0 ]] && export delete_cluster=false;
+    [[ ${#create_cluster} -eq 0 ]] && export create_cluster=false;
+    [[ ${#deploy_cluster} -eq 0 ]] && export deploy_cluster=false;
+    [[ ${#deploy_dashboard} -eq 0 ]] && export deploy_dashboard=false;
+    [[ ${#deploy_prometheus} -eq 0 ]] && export deploy_prometheus=false;
+    [[ ${#deploy_prototype} -eq 0 ]] && export deploy_prototype=false;
+    [[ ${#describe_cluster} -eq 0 ]] && export describe_cluster=false;
+    [[ ${#describe_create} -eq 0 ]] && export describe_create=false;
+    [[ ${#describe_delete} -eq 0 ]] && export describe_delete=false;
+    [[ ${#enable_cloudwatch} -eq 0 ]] && export enable_cloudwatch=false;
+    [[ ${#interactive_mode} -eq 0 ]] && export interactive_mode=false;
+    ## [[ ${#kubeconfig} -eq 0 ]] && export kubeconfig="${KUBECONFIG}";
+    if [[ ${#target_cluster} -gt 0 ]]; then
+      regex='(.*)\.(.*)\.(.*)';
+      if [[ ${target_cluster} =~ ${regex} ]]; then
+        export cluster_name="${BASH_REMATCH[1]}";
+        export domain_name="${BASH_REMATCH[2]}.${BASH_REMATCH[3]}";
+      fi;
+    fi;
+    ## [[ ${#dry_run} -eq 0 ]] && export dry_run=false;
+    [[ ${#debug_mode} -eq 0 ]] && export debug_mode=false;
+    [[ ${#verbose} -eq 0 ]] && export verbose=false;
+    [[ ${#access_pubkey} -eq 0 ]] && export access_pubkey="${HOME}/.ssh/${KUBERNETES_SSHKEY}";
+    [[ ${#default_profile} -eq 0 ]] && export default_profile="${PROFILE_KUBERNETES}";
+    default_user="${USER}";
+    if [[ ${debug_mode} == true ]]; then
+           debug_mode=4;
+      else debug_mode=3;
+    fi;
+    [[ ${describe_create} == true ]] && how2create_cluster;
+    [[ ${describe_delete} == true ]] && how2delete_cluster;
+    if [[ ${#default_region} -eq 0 ]]; then
+            export default_region="${AWS_REGION}";
+      else  export AWS_REGION="${default_region}";
+            export AWS_DEFAULT_REGION="${AWS_REGION}";
+    fi;
+    if [[ ${#default_zones} -eq 0 ]]; then
+            export default_zones="${AWS_ZONES}";
+      else  export AWS_ZONES="${default_zones}";
+    fi;
+    if [[ ${display_help} == true ]]; then
+           cluster_name="${default_user}";
+           domain_name="${DEFAULT_DOMAIN}";
+           silent_mode=true;
+           k8s_env;
+           script_options;
+      else if [[ ${#cluster_name} -eq 0 ]]; then
+             newline; read -p "Cluster Name: " response;
+             if [[ ${#response} -eq 0 ]]; then
+                    ## display_message "Warning: Cluster Name is invalid (empty)! ";
+                    ## return 1;
+                    export cluster_name=${USER};
+               else cluster_name="${response}";
+             fi;
+           fi;
+           if [[ ${#domain_name} -eq 0 ]]; then
+             newline; read -p "Domain Name: " response;
+             if [[ ${#response} -eq 0 ]]; then
+                    display_message "Warning: Domain Name is invalid (empty)! ";
+                    return 2;
+               else domain_name="${response}";
+             fi;
+           fi;
+    fi;
+    export cluster_context="${cluster_name}.${domain_name}";
+    export docker_build="${domain_name}/${cluster_name}";
+    export TARGET_DOCKERFILE="${clusters_path}/${script_name}/docker/${docker_build}";
+    mkdir -p ${TARGET_DOCKERFILE};
+    case ${delete_cluster} in
+       true ) script_request='delete'; ;;
+      false ) script_request='create'; ;;
+    esac;
+    export CALLER_SCRIPT="$(dirname ${CALLER_SCRIPT})/${cluster_context}--${script_request}.log";
+    cat /dev/null > ${CALLER_SCRIPT};
+    logging_process "Processing: ${cluster_context}";
+    [[ ${#AWS_ACCOUNT} -eq 0 ]] && fetch_awsaccount;
+    [[ ${#AWS_ACCOUNT} -ne ${AWS_ACCOUNT_LENGTH} ]] && exit 1;
+    ## Enforcing Kubernetes Group|User
+    create_iamgroup ${GROUP_KUBERNETES} ${POLICY_KUBERNETES};
+    create_iamuser ${USER_KUBERNETES} ${GROUP_KUBERNETES};
+    ## Defaulting AWS Default Profile
+    ## export AWS_DEFAULT_PROFILE="${default_profile}";
+    k8s_env ${cluster_name} ${domain_name};
+    ## export configs_path="${local_tmp}/${domain_name}/${cluster_name}"; mkdir -p ${configs_path};
+    export configs_path="${clusters_path}/configs"; mkdir -p ${configs_path};
+    export KOPS_STATE_BACKUP="${KUBEHOME}/k8sctl/clusters/${domain_name}/${cluster_name}"; mkdir -p ${KOPS_STATE_BACKUP};
+    export KUBECONFIG="${KOPS_STATE_BACKUP}/config"; touch ${KUBECONFIG};
+    export service_platform='k8s-ec2';
+    export account_number=$(
+        services_console "--profile ${AWS_DEFAULT_PROFILE} \
+            --region ${default_region} \
+            sts get-caller-identity \
+            --query 'Account' \
+            --output text"
+      );
+    if [[ ${delete_cluster} == true ]]; then
+      delete_k8scluster;
+      return 0;
+    fi;
+    if [[ ${deploy_cluster} == true ]]; then
+      enable_cloudwatch=true;
+      deploy_prometheus=true;
+      deploy_dashboard=true;
+      deploy_prototype=true;
+      describe_cluster=true;
+      continue_process "Deploy Kubernetes AWS-Cluster (Y/n) ?: ";
+      if [[ ${continue_response} == true ]]; then
+        route53_configs;
+        cluster_storage;
+        create_k8scluster;
+        newline;
+        counter=0; status=1;
+        while [[ ${status} -ne 0 ]]; do
+          inline '.'; ((counter++));
+          kops_console "validate cluster" &>/dev/null; status=${?};
+          if [[ ${status} -eq 0 ]]; then
+               display_message " done! [ ${counter} mins. ]";
+               break;
+          else sleep_until 60 15 "Countdown:";
+        fi;
+        done; unset counter;
+        kubectl_console "config use-context ${cluster_context}";
+        install_metricsserver;
+      fi;
+    fi;
+    if [[ ${enable_cloudwatch} == true ]]; then
+      enable_cloudwatch;
+    fi;
+    if [[ ${deploy_prometheus} == true ]]; then
+      deploy_prometheus;
+    fi;
+    if [[ ${deploy_dashboard} == true ]]; then
+      deploy_dashboard ${KOPS_CLUSTER_NAME};
+    fi;
+    if [[ ${deploy_prototype} == true ]]; then
+      if [[ -d ${TARGET_DOCKERFILE} ]]; then
+        cluster_application ${docker_application} ${cluster_context};
+        export container_content='/var/www/html/index.html';
+        repo_version="${script_name}";
+        sed -i -e "s|^\(RUN echo 'Hello.*\)\((\)\(.*\)\()\)\(.*\)$|\1\2${repo_version}.${cluster_context}: $(date +'%Y%m%d%H%M%S')\4\5|g" ${TARGET_DOCKERFILE}/Dockerfile;
+        rm ${TARGET_DOCKERFILE}/Dockerfile-e &>/dev/null;
+        rollout_deployment ${TARGET_DOCKERFILE} ${docker_application} ${cluster_context};
+        deploy_prototype;
+        update_deployment;
+      fi;
+    fi;
+    if [[ ${describe_cluster} == true ]]; then
+      cluster_contexts;
+      describe_cluster;
+      declare -a console_targets=(
+          status
+          history
+        );
+      display_message "Identifying Deployment Status ...";
+      for target in ${console_targets[@]}; do
+        kubectl_console "rollout ${target} deployment/${docker_application}-deployment";
+      done;
+      cluster_services;
+      newline;
+    fi;
+    logging_process "KubeConfig: export KUBECONFIG='${KUBECONFIG}';";
+    logging_process "Completed! ";
+    return 0;
+  };
+
+k8s_cluster "${@}";

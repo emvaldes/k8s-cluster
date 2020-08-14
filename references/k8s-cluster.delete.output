@@ -1,0 +1,817 @@
+
+Kubernetes Cluster K8S-EC2 (destroy)
+
+$ time { k8s-cluster --delete-cluster=prototype.emvaldes.name --verbose ; };
+
+123456789012
+
+Validating IAM Group: kubernetes
+{
+    "AttachedPolicies": [
+        {
+            "PolicyName": "AdministratorAccess",
+            "PolicyArn": "arn:aws:iam::aws:policy/AdministratorAccess"
+        }
+    ]
+}
+
+Validating IAM User: kubernetes
+{
+    "Users": [
+        {
+            "Path": "/",
+            "UserName": "kubernetes",
+            "UserId": "AIDA2XV4BKOYCPXHQKTVU",
+            "Arn": "arn:aws:iam::123456789012:user/kubernetes",
+            "CreateDate": "2020-04-03T03:29:23+00:00"
+        }
+    ],
+    "Group": {
+        "Path": "/",
+        "GroupName": "kubernetes",
+        "GroupId": "AGPA2XV4BKOYH67DC5EXH",
+        "Arn": "arn:aws:iam::123456789012:group/kubernetes",
+        "CreateDate": "2020-04-03T03:27:48+00:00"
+    }
+}
+{
+    "Groups": [
+        {
+            "Path": "/",
+            "GroupName": "kubernetes",
+            "GroupId": "AGPA2XV4BKOYH67DC5EXH",
+            "Arn": "arn:aws:iam::123456789012:group/kubernetes",
+            "CreateDate": "2020-04-03T03:27:48+00:00"
+        }
+    ]
+}
+
+Exporting prototype.emvaldes.name: ...
+
+Environment:
+      SSH Public Key:      id_rsa.pub
+      AWS Profile:         kubernetes
+      AWS Default Profile: kubernetes
+      AWS Account Number:  123456789012
+      Target TLDN:         emvaldes.name
+      Master-Node Size:    t3a.xlarge
+      Master-Node Zones:   us-east-1a,us-east-1b,us-east-1c
+      Cluster Nodes Size:  t3a.large
+      Cluster Nodes Zones: us-east-1a,us-east-1b,us-east-1c
+      S3 Bucket Name:      kubernetes-states--123456789012
+
+AWS Configurations
+      AWS Default Region: us-east-1
+      Default Profile:    kubernetes
+      Config File:        /Users/emvaldes/.aws/config
+      Default Output:     json
+      Default Region:     us-east-1
+      SAML2 AWS Profile:  devops
+      Shared Credentials: /Users/emvaldes/.aws/credentials
+      Availability Zones: us-east-1a,us-east-1b,us-east-1c
+
+KOPS Configurations
+      KOPS Cluster Name:   prototype.emvaldes.name
+      KOPS State Store:    s3://kubernetes-states--123456789012
+      KOPS Feature Flags:  SpecOverrideFlag
+      Kubernetes Provider: aws
+
+Deleting Kubernetes Cluster: prototype.emvaldes.name ...
+I0812 20:00:36.826577    6681 featureflag.go:154] FeatureFlag "SpecOverrideFlag"=true
+I0812 20:00:36.849019    6681 factory.go:68] state store s3://kubernetes-states--123456789012
+I0812 20:00:38.194474    6681 s3context.go:210] found bucket in region "us-east-1"
+I0812 20:00:38.550667    6681 aws_cloud.go:1340] Querying EC2 for all valid zones in region "us-east-1"
+I0812 20:00:38.550782    6681 request_logger.go:45] AWS request: ec2/DescribeAvailabilityZones
+I0812 20:00:38.992620    6681 aws_cloud.go:565] Listing all Autoscaling groups matching cluster tags
+I0812 20:00:38.992784    6681 request_logger.go:45] AWS request: autoscaling/DescribeTags
+I0812 20:00:39.474296    6681 request_logger.go:45] AWS request: autoscaling/DescribeAutoScalingGroups
+I0812 20:00:39.676396    6681 aws.go:385] Querying EC2 instances
+I0812 20:00:39.676550    6681 request_logger.go:45] AWS request: ec2/DescribeInstances
+I0812 20:00:39.896745    6681 aws.go:699] Listing EC2 Keypairs
+I0812 20:00:39.896856    6681 request_logger.go:45] AWS request: ec2/DescribeKeyPairs
+I0812 20:00:40.019097    6681 securitygroup.go:129] Listing EC2 SecurityGroups
+I0812 20:00:40.019337    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:00:40.302372    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:00:40.427676    6681 aws.go:657] Listing EC2 Volumes
+I0812 20:00:40.427790    6681 request_logger.go:45] AWS request: ec2/DescribeVolumes
+I0812 20:00:40.626969    6681 aws.go:972] Listing EC2 DhcpOptions
+I0812 20:00:40.627121    6681 request_logger.go:45] AWS request: ec2/DescribeDhcpOptions
+I0812 20:00:40.761715    6681 aws.go:1082] Listing EC2 InternetGateways
+I0812 20:00:40.761861    6681 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 20:00:40.902670    6681 routetable.go:36] Listing EC2 RouteTables
+I0812 20:00:40.902888    6681 request_logger.go:45] AWS request: ec2/DescribeRouteTables
+I0812 20:00:41.048398    6681 request_logger.go:45] AWS request: ec2/DescribeRouteTables
+I0812 20:00:41.160950    6681 aws.go:873] Listing EC2 subnets
+I0812 20:00:41.161098    6681 request_logger.go:45] AWS request: ec2/DescribeSubnets
+I0812 20:00:41.465706    6681 vpc.go:75] Listing EC2 VPC
+I0812 20:00:41.465848    6681 request_logger.go:45] AWS request: ec2/DescribeVpcs
+I0812 20:00:41.600523    6681 request_logger.go:45] AWS request: ec2/DescribeVpcs
+I0812 20:00:41.710403    6681 aws.go:1504] Listing all ELBs
+I0812 20:00:41.710635    6681 request_logger.go:45] AWS request: elasticloadbalancing/DescribeLoadBalancers
+I0812 20:00:42.207920    6681 request_logger.go:45] AWS request: elasticloadbalancing/DescribeTags
+I0812 20:00:42.289738    6681 aws.go:1597] Listing all NLBs and ALBs
+I0812 20:00:42.289903    6681 request_logger.go:45] AWS request: elasticloadbalancing/DescribeLoadBalancers
+I0812 20:00:42.372723    6681 aws.go:1679] Listing all TargetGroups
+I0812 20:00:42.372929    6681 request_logger.go:45] AWS request: elasticloadbalancing/DescribeTargetGroups
+I0812 20:00:42.447684    6681 aws.go:1820] Querying for all route53 zones
+I0812 20:00:42.448847    6681 request_logger.go:45] AWS request: route53/ListHostedZones
+I0812 20:00:43.058257    6681 aws.go:1845] Querying for records in zone: "emvaldes.name."
+I0812 20:00:43.058546    6681 request_logger.go:45] AWS request: route53/ListResourceRecordSets
+I0812 20:00:43.462009    6681 aws.go:1845] Querying for records in zone: "prototype.emvaldes.name."
+I0812 20:00:43.462315    6681 request_logger.go:45] AWS request: route53/ListResourceRecordSets
+I0812 20:00:43.772398    6681 request_logger.go:45] AWS request: iam/ListInstanceProfiles
+I0812 20:00:44.158557    6681 request_logger.go:45] AWS request: iam/ListRoles
+I0812 20:00:44.398897    6681 aws.go:1102] Listing all Internet Gateways
+I0812 20:00:44.399014    6681 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 20:00:44.512120    6681 aws.go:1230] Finding all Autoscaling LaunchConfigurations by security group
+I0812 20:00:44.512303    6681 request_logger.go:45] AWS request: autoscaling/DescribeLaunchConfigurations
+I0812 20:00:44.634455    6681 aws.go:1188] Finding all Autoscaling LaunchTemplates associated to security groups
+I0812 20:00:44.634588    6681 request_logger.go:45] AWS request: ec2/DescribeLaunchTemplates
+I0812 20:00:44.749402    6681 aws.go:913] Listing all RouteTables
+I0812 20:00:44.749578    6681 request_logger.go:45] AWS request: ec2/DescribeRouteTables
+I0812 20:00:44.880910    6681 request_logger.go:45] AWS request: ec2/DescribeRouteTables
+TYPE			NAME											ID
+autoscaling-config	master-us-east-1a.masters.prototype.emvaldes.name-20200813015942			master-us-east-1a.masters.prototype.emvaldes.name-20200813015942
+autoscaling-config	master-us-east-1b.masters.prototype.emvaldes.name-20200813015942			master-us-east-1b.masters.prototype.emvaldes.name-20200813015942
+autoscaling-config	master-us-east-1c.masters.prototype.emvaldes.name-20200813015942			master-us-east-1c.masters.prototype.emvaldes.name-20200813015942
+autoscaling-config	nodes.prototype.emvaldes.name-20200813015942						nodes.prototype.emvaldes.name-20200813015942
+autoscaling-group	master-us-east-1a.masters.prototype.emvaldes.name					master-us-east-1a.masters.prototype.emvaldes.name
+autoscaling-group	master-us-east-1b.masters.prototype.emvaldes.name					master-us-east-1b.masters.prototype.emvaldes.name
+autoscaling-group	master-us-east-1c.masters.prototype.emvaldes.name					master-us-east-1c.masters.prototype.emvaldes.name
+autoscaling-group	nodes.prototype.emvaldes.name								nodes.prototype.emvaldes.name
+dhcp-options		prototype.emvaldes.name									dopt-034d8fb3b84ef4d24
+iam-instance-profile	masters.prototype.emvaldes.name								masters.prototype.emvaldes.name
+iam-instance-profile	nodes.prototype.emvaldes.name								nodes.prototype.emvaldes.name
+iam-role		masters.prototype.emvaldes.name								masters.prototype.emvaldes.name
+iam-role		nodes.prototype.emvaldes.name								nodes.prototype.emvaldes.name
+instance		master-us-east-1a.masters.prototype.emvaldes.name					i-0a262f98670978a6e
+instance		master-us-east-1b.masters.prototype.emvaldes.name					i-00b4ef156196d4392
+instance		master-us-east-1c.masters.prototype.emvaldes.name					i-073a2b7720b2664d1
+instance		nodes.prototype.emvaldes.name								i-058fdb746519f50f7
+instance		nodes.prototype.emvaldes.name								i-0685d12760cf79592
+instance		nodes.prototype.emvaldes.name								i-0dafe8f1da85d69fe
+internet-gateway	prototype.emvaldes.name									igw-00320b6890da7c21e
+keypair			kubernetes.prototype.emvaldes.name-0d:cf:ad:b7:cd:25:43:63:95:69:bb:9b:38:c1:5a:80	kubernetes.prototype.emvaldes.name-0d:cf:ad:b7:cd:25:43:63:95:69:bb:9b:38:c1:5a:80
+load-balancer													aa6f6bfc7a61044fe9b2fc05f2d81c21
+route-table		prototype.emvaldes.name									rtb-06424261ae0b613d0
+route53-record		api.internal.prototype.emvaldes.name.							Z07723263T3E4SGWJ11FJ/api.internal.prototype.emvaldes.name.
+route53-record		api.prototype.emvaldes.name.								Z07723263T3E4SGWJ11FJ/api.prototype.emvaldes.name.
+security-group													sg-05906322bdbddfd04
+security-group		masters.prototype.emvaldes.name								sg-028a0321b9a33df87
+security-group		nodes.prototype.emvaldes.name								sg-0b53bc05196934020
+subnet			us-east-1a.prototype.emvaldes.name							subnet-03e4d1e6c144d58a2
+subnet			us-east-1b.prototype.emvaldes.name							subnet-0b82293ce86133b74
+subnet			us-east-1c.prototype.emvaldes.name							subnet-061997eac0ea4fccf
+volume			a.etcd-events.prototype.emvaldes.name							vol-0e3af352a55ebefdb
+volume			a.etcd-main.prototype.emvaldes.name							vol-03ffe65af0871a560
+volume			b.etcd-events.prototype.emvaldes.name							vol-0512138e5e2ee865e
+volume			b.etcd-main.prototype.emvaldes.name							vol-062b1035d2dcbec3f
+volume			c.etcd-events.prototype.emvaldes.name							vol-0f1c598c27547ec12
+volume			c.etcd-main.prototype.emvaldes.name							vol-06a139e85daa45ccf
+vpc			prototype.emvaldes.name									vpc-0a7187a5f2885941d
+
+I0812 20:00:45.017113    6681 delete.go:50] Dependencies
+I0812 20:00:45.017125    6681 delete.go:52] 	subnet:subnet-03e4d1e6c144d58a2	[instance:i-058fdb746519f50f7 load-balancer:aa6f6bfc7a61044fe9b2fc05f2d81c21 autoscaling-group:nodes.prototype.emvaldes.name instance:i-0a262f98670978a6e autoscaling-group:master-us-east-1a.masters.prototype.emvaldes.name]
+I0812 20:00:45.017142    6681 delete.go:52] 	security-group:sg-0b53bc05196934020	[instance:i-058fdb746519f50f7 instance:i-0dafe8f1da85d69fe instance:i-0685d12760cf79592]
+I0812 20:00:45.017151    6681 delete.go:52] 	subnet:subnet-061997eac0ea4fccf	[load-balancer:aa6f6bfc7a61044fe9b2fc05f2d81c21 autoscaling-group:nodes.prototype.emvaldes.name instance:i-073a2b7720b2664d1 autoscaling-group:master-us-east-1c.masters.prototype.emvaldes.name instance:i-0685d12760cf79592]
+I0812 20:00:45.017160    6681 delete.go:52] 	volume:vol-0512138e5e2ee865e	[instance:i-00b4ef156196d4392]
+I0812 20:00:45.017167    6681 delete.go:52] 	instance:i-0dafe8f1da85d69fe	[]
+I0812 20:00:45.017177    6681 delete.go:52] 	volume:vol-066a6aec2f35ddfe6	[instance:i-0a262f98670978a6e]
+I0812 20:00:45.017184    6681 delete.go:52] 	volume:vol-0e41af59f8f523400	[instance:i-073a2b7720b2664d1]
+I0812 20:00:45.017190    6681 delete.go:52] 	instance:i-0685d12760cf79592	[]
+I0812 20:00:45.017196    6681 delete.go:52] 	volume:vol-062b1035d2dcbec3f	[instance:i-00b4ef156196d4392]
+I0812 20:00:45.017203    6681 delete.go:52] 	dhcp-options:dopt-034d8fb3b84ef4d24	[vpc:vpc-0a7187a5f2885941d]
+I0812 20:00:45.017212    6681 delete.go:52] 	route53-record:Z07723263T3E4SGWJ11FJ/api.internal.prototype.emvaldes.name.	[]
+I0812 20:00:45.017218    6681 delete.go:52] 	autoscaling-group:master-us-east-1a.masters.prototype.emvaldes.name	[]
+I0812 20:00:45.017224    6681 delete.go:52] 	iam-instance-profile:masters.prototype.emvaldes.name	[]
+I0812 20:00:45.017230    6681 delete.go:52] 	iam-instance-profile:nodes.prototype.emvaldes.name	[]
+I0812 20:00:45.017236    6681 delete.go:52] 	iam-role:nodes.prototype.emvaldes.name	[]
+I0812 20:00:45.017242    6681 delete.go:52] 	volume:vol-0399e13f2ae4e4e11	[instance:i-0685d12760cf79592]
+I0812 20:00:45.017248    6681 delete.go:52] 	autoscaling-config:master-us-east-1c.masters.prototype.emvaldes.name-20200813015942	[autoscaling-group:master-us-east-1c.masters.prototype.emvaldes.name]
+I0812 20:00:45.018418    6681 delete.go:52] 	autoscaling-group:master-us-east-1c.masters.prototype.emvaldes.name	[]
+I0812 20:00:45.018438    6681 delete.go:52] 	volume:vol-06853970402bd8ab0	[instance:i-00b4ef156196d4392]
+I0812 20:00:45.018447    6681 delete.go:52] 	volume:vol-0e843965e8ecfd6dc	[instance:i-058fdb746519f50f7]
+I0812 20:00:45.018454    6681 delete.go:52] 	route-table:rtb-06424261ae0b613d0	[subnet:subnet-061997eac0ea4fccf subnet:subnet-03e4d1e6c144d58a2 subnet:subnet-0b82293ce86133b74]
+I0812 20:00:45.018461    6681 delete.go:52] 	security-group:sg-028a0321b9a33df87	[instance:i-0a262f98670978a6e instance:i-073a2b7720b2664d1 instance:i-00b4ef156196d4392]
+I0812 20:00:45.018468    6681 delete.go:52] 	autoscaling-config:nodes.prototype.emvaldes.name-20200813015942	[autoscaling-group:nodes.prototype.emvaldes.name]
+I0812 20:00:45.018475    6681 delete.go:52] 	autoscaling-group:nodes.prototype.emvaldes.name	[]
+I0812 20:00:45.018481    6681 delete.go:52] 	internet-gateway:igw-00320b6890da7c21e	[]
+I0812 20:00:45.018488    6681 delete.go:52] 	volume:vol-03ffe65af0871a560	[instance:i-0a262f98670978a6e]
+I0812 20:00:45.018495    6681 delete.go:52] 	instance:i-058fdb746519f50f7	[]
+I0812 20:00:45.018501    6681 delete.go:52] 	subnet:subnet-0b82293ce86133b74	[load-balancer:aa6f6bfc7a61044fe9b2fc05f2d81c21 instance:i-0dafe8f1da85d69fe autoscaling-group:nodes.prototype.emvaldes.name autoscaling-group:master-us-east-1b.masters.prototype.emvaldes.name instance:i-00b4ef156196d4392]
+I0812 20:00:45.018509    6681 delete.go:52] 	volume:vol-0f1c598c27547ec12	[instance:i-073a2b7720b2664d1]
+I0812 20:00:45.018517    6681 delete.go:52] 	volume:vol-0c39042e9fe6eb817	[instance:i-0dafe8f1da85d69fe]
+I0812 20:00:45.018523    6681 delete.go:52] 	autoscaling-config:master-us-east-1a.masters.prototype.emvaldes.name-20200813015942	[autoscaling-group:master-us-east-1a.masters.prototype.emvaldes.name]
+I0812 20:00:45.018844    6681 delete.go:52] 	volume:vol-06a139e85daa45ccf	[instance:i-073a2b7720b2664d1]
+I0812 20:00:45.018863    6681 delete.go:52] 	instance:i-0a262f98670978a6e	[]
+I0812 20:00:45.018871    6681 delete.go:52] 	instance:i-073a2b7720b2664d1	[]
+I0812 20:00:45.018877    6681 delete.go:52] 	instance:i-00b4ef156196d4392	[]
+I0812 20:00:45.018883    6681 delete.go:52] 	vpc:vpc-0a7187a5f2885941d	[instance:i-058fdb746519f50f7 subnet:subnet-0b82293ce86133b74 load-balancer:aa6f6bfc7a61044fe9b2fc05f2d81c21 subnet:subnet-061997eac0ea4fccf security-group:sg-0b53bc05196934020 security-group:sg-05906322bdbddfd04 route-table:rtb-06424261ae0b613d0 instance:i-0dafe8f1da85d69fe security-group:sg-028a0321b9a33df87 subnet:subnet-03e4d1e6c144d58a2 internet-gateway:igw-00320b6890da7c21e instance:i-0a262f98670978a6e instance:i-073a2b7720b2664d1 instance:i-00b4ef156196d4392 instance:i-0685d12760cf79592]
+I0812 20:00:45.018897    6681 delete.go:52] 	route53-record:Z07723263T3E4SGWJ11FJ/api.prototype.emvaldes.name.	[]
+I0812 20:00:45.018905    6681 delete.go:52] 	volume:vol-0e3af352a55ebefdb	[instance:i-0a262f98670978a6e]
+I0812 20:00:45.019141    6681 delete.go:52] 	iam-role:masters.prototype.emvaldes.name	[]
+I0812 20:00:45.019159    6681 delete.go:52] 	keypair:kubernetes.prototype.emvaldes.name-0d:cf:ad:b7:cd:25:43:63:95:69:bb:9b:38:c1:5a:80	[]
+I0812 20:00:45.019167    6681 delete.go:52] 	security-group:sg-05906322bdbddfd04	[load-balancer:aa6f6bfc7a61044fe9b2fc05f2d81c21]
+I0812 20:00:45.019175    6681 delete.go:52] 	load-balancer:aa6f6bfc7a61044fe9b2fc05f2d81c21	[]
+I0812 20:00:45.019181    6681 delete.go:52] 	autoscaling-config:master-us-east-1b.masters.prototype.emvaldes.name-20200813015942	[autoscaling-group:master-us-east-1b.masters.prototype.emvaldes.name]
+I0812 20:00:45.019188    6681 delete.go:52] 	autoscaling-group:master-us-east-1b.masters.prototype.emvaldes.name	[]
+I0812 20:00:45.019279    6681 aws.go:1122] Deleting autoscaling group "nodes.prototype.emvaldes.name"
+I0812 20:00:45.019306    6681 aws.go:317] Deleting EC2 instance "i-00b4ef156196d4392"
+I0812 20:00:45.019361    6681 aws.go:1789] Deleting route53 records "api.internal.prototype.emvaldes.name., api.prototype.emvaldes.name."
+I0812 20:00:45.019364    6681 aws.go:1122] Deleting autoscaling group "master-us-east-1c.masters.prototype.emvaldes.name"
+I0812 20:00:45.019400    6681 aws.go:317] Deleting EC2 instance "i-0a262f98670978a6e"
+I0812 20:00:45.019432    6681 request_logger.go:45] AWS request: autoscaling/DeleteAutoScalingGroup
+I0812 20:00:45.019463    6681 request_logger.go:45] AWS request: ec2/TerminateInstances
+I0812 20:00:45.019280    6681 aws.go:1122] Deleting autoscaling group "master-us-east-1b.masters.prototype.emvaldes.name"
+I0812 20:00:45.019483    6681 aws.go:317] Deleting EC2 instance "i-058fdb746519f50f7"
+I0812 20:00:45.019308    6681 aws.go:678] Deleting EC2 Keypair "kubernetes.prototype.emvaldes.name-0d:cf:ad:b7:cd:25:43:63:95:69:bb:9b:38:c1:5a:80"
+I0812 20:00:45.019539    6681 aws.go:317] Deleting EC2 instance "i-0dafe8f1da85d69fe"
+I0812 20:00:45.019495    6681 aws.go:1406] Deleting ELB "aa6f6bfc7a61044fe9b2fc05f2d81c21"
+I0812 20:00:45.019591    6681 request_logger.go:45] AWS request: ec2/TerminateInstances
+I0812 20:00:45.019596    6681 aws.go:2036] Removing role "masters.prototype.emvaldes.name" from IAM instance profile "masters.prototype.emvaldes.name"
+I0812 20:00:45.019576    6681 aws.go:317] Deleting EC2 instance "i-0685d12760cf79592"
+I0812 20:00:45.019645    6681 request_logger.go:45] AWS request: iam/ListRolePolicies
+I0812 20:00:45.019696    6681 request_logger.go:45] AWS request: iam/ListRolePolicies
+I0812 20:00:45.019437    6681 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 20:00:45.019608    6681 aws.go:2036] Removing role "nodes.prototype.emvaldes.name" from IAM instance profile "nodes.prototype.emvaldes.name"
+I0812 20:00:45.019641    6681 request_logger.go:45] AWS request: ec2/TerminateInstances
+I0812 20:00:45.019821    6681 request_logger.go:45] AWS request: ec2/DeleteKeyPair
+I0812 20:00:45.019796    6681 aws.go:317] Deleting EC2 instance "i-073a2b7720b2664d1"
+I0812 20:00:45.019849    6681 request_logger.go:45] AWS request: autoscaling/DeleteAutoScalingGroup
+I0812 20:00:45.019703    6681 aws.go:1122] Deleting autoscaling group "master-us-east-1a.masters.prototype.emvaldes.name"
+I0812 20:00:45.019919    6681 request_logger.go:45] AWS request: autoscaling/DeleteAutoScalingGroup
+I0812 20:00:45.019934    6681 request_logger.go:45] AWS request: iam/RemoveRoleFromInstanceProfile
+I0812 20:00:45.019998    6681 request_logger.go:45] AWS request: iam/RemoveRoleFromInstanceProfile
+I0812 20:00:45.020102    6681 request_logger.go:45] AWS request: ec2/TerminateInstances
+I0812 20:00:45.020181    6681 request_logger.go:45] AWS request: elasticloadbalancing/DeleteLoadBalancer
+I0812 20:00:45.020257    6681 request_logger.go:45] AWS request: autoscaling/DeleteAutoScalingGroup
+I0812 20:00:45.020341    6681 request_logger.go:45] AWS request: ec2/TerminateInstances
+I0812 20:00:45.020375    6681 request_logger.go:45] AWS request: ec2/TerminateInstances
+I0812 20:00:45.020467    6681 request_logger.go:45] AWS request: route53/ChangeResourceRecordSets
+load-balancer:aa6f6bfc7a61044fe9b2fc05f2d81c21	ok
+I0812 20:00:45.163619    6681 request_logger.go:45] AWS request: iam/ListAttachedRolePolicies
+instance:i-00b4ef156196d4392	ok
+route53-record:Z07723263T3E4SGWJ11FJ/api.internal.prototype.emvaldes.name.	ok
+I0812 20:00:45.276990    6681 request_logger.go:45] AWS request: iam/ListAttachedRolePolicies
+autoscaling-group:nodes.prototype.emvaldes.name	ok
+I0812 20:00:45.356884    6681 aws.go:2050] Deleting IAM instance profile "nodes.prototype.emvaldes.name"
+I0812 20:00:45.357038    6681 request_logger.go:45] AWS request: iam/DeleteInstanceProfile
+I0812 20:00:45.380776    6681 aws.go:1946] Deleting IAM role policy "nodes.prototype.emvaldes.name" "nodes.prototype.emvaldes.name"
+I0812 20:00:45.380869    6681 request_logger.go:45] AWS request: iam/DeleteRolePolicy
+I0812 20:00:45.381606    6681 aws.go:1946] Deleting IAM role policy "masters.prototype.emvaldes.name" "masters.prototype.emvaldes.name"
+I0812 20:00:45.381668    6681 request_logger.go:45] AWS request: iam/DeleteRolePolicy
+I0812 20:00:45.398978    6681 aws.go:1013] Detaching EC2 InternetGateway "igw-00320b6890da7c21e"
+I0812 20:00:45.399106    6681 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+instance:i-0a262f98670978a6e	ok
+I0812 20:00:45.455836    6681 aws.go:2050] Deleting IAM instance profile "masters.prototype.emvaldes.name"
+I0812 20:00:45.455925    6681 request_logger.go:45] AWS request: iam/DeleteInstanceProfile
+iam-instance-profile:nodes.prototype.emvaldes.name	ok
+instance:i-073a2b7720b2664d1	ok
+autoscaling-group:master-us-east-1b.masters.prototype.emvaldes.name	ok
+keypair:kubernetes.prototype.emvaldes.name-0d:cf:ad:b7:cd:25:43:63:95:69:bb:9b:38:c1:5a:80	ok
+I0812 20:00:45.528749    6681 aws.go:1972] Deleting IAM role "nodes.prototype.emvaldes.name"
+I0812 20:00:45.528901    6681 request_logger.go:45] AWS request: iam/DeleteRole
+I0812 20:00:45.531072    6681 aws.go:1972] Deleting IAM role "masters.prototype.emvaldes.name"
+I0812 20:00:45.531142    6681 request_logger.go:45] AWS request: iam/DeleteRole
+instance:i-058fdb746519f50f7	ok
+instance:i-0685d12760cf79592	ok
+instance:i-0dafe8f1da85d69fe	ok
+autoscaling-group:master-us-east-1c.masters.prototype.emvaldes.name	ok
+iam-instance-profile:masters.prototype.emvaldes.name	ok
+internet-gateway:igw-00320b6890da7c21e	still has dependencies, will retry
+autoscaling-group:master-us-east-1a.masters.prototype.emvaldes.name	ok
+iam-role:nodes.prototype.emvaldes.name	ok
+iam-role:masters.prototype.emvaldes.name	ok
+I0812 20:00:45.683835    6681 aws.go:1390] Deleting autoscaling LaunchConfiguration "master-us-east-1a.masters.prototype.emvaldes.name-20200813015942"
+I0812 20:00:45.683852    6681 aws.go:571] Deleting EC2 Volume "vol-062b1035d2dcbec3f"
+I0812 20:00:45.683878    6681 aws.go:571] Deleting EC2 Volume "vol-03ffe65af0871a560"
+I0812 20:00:45.683886    6681 aws.go:571] Deleting EC2 Volume "vol-06a139e85daa45ccf"
+I0812 20:00:45.683938    6681 aws.go:734] Deleting EC2 Subnet "subnet-061997eac0ea4fccf"
+I0812 20:00:45.683939    6681 aws.go:734] Deleting EC2 Subnet "subnet-03e4d1e6c144d58a2"
+I0812 20:00:45.683975    6681 request_logger.go:45] AWS request: autoscaling/DeleteLaunchConfiguration
+I0812 20:00:45.683994    6681 aws.go:734] Deleting EC2 Subnet "subnet-0b82293ce86133b74"
+I0812 20:00:45.684008    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:00:45.684021    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:00:45.684028    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:00:45.684043    6681 aws.go:1390] Deleting autoscaling LaunchConfiguration "master-us-east-1c.masters.prototype.emvaldes.name-20200813015942"
+I0812 20:00:45.684061    6681 aws.go:1390] Deleting autoscaling LaunchConfiguration "master-us-east-1b.masters.prototype.emvaldes.name-20200813015942"
+I0812 20:00:45.684089    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:00:45.684049    6681 aws.go:1390] Deleting autoscaling LaunchConfiguration "nodes.prototype.emvaldes.name-20200813015942"
+I0812 20:00:45.684153    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:00:45.684000    6681 aws.go:571] Deleting EC2 Volume "vol-0f1c598c27547ec12"
+I0812 20:00:45.684188    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:00:45.684203    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:00:45.684216    6681 request_logger.go:45] AWS request: autoscaling/DeleteLaunchConfiguration
+I0812 20:00:45.684028    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:00:45.683858    6681 aws.go:571] Deleting EC2 Volume "vol-0e3af352a55ebefdb"
+I0812 20:00:45.684299    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:00:45.684330    6681 request_logger.go:45] AWS request: autoscaling/DeleteLaunchConfiguration
+I0812 20:00:45.684029    6681 aws.go:571] Deleting EC2 Volume "vol-0512138e5e2ee865e"
+I0812 20:00:45.684228    6681 request_logger.go:45] AWS request: autoscaling/DeleteLaunchConfiguration
+I0812 20:00:45.684410    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:00:45.684460    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:00:45.684465    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+volume:vol-03ffe65af0871a560	still has dependencies, will retry
+volume:vol-06a139e85daa45ccf	still has dependencies, will retry
+autoscaling-config:master-us-east-1a.masters.prototype.emvaldes.name-20200813015942	ok
+autoscaling-config:master-us-east-1c.masters.prototype.emvaldes.name-20200813015942	ok
+I0812 20:00:46.124637    6681 request_logger.go:45] AWS request: ec2/RevokeSecurityGroupIngress
+I0812 20:00:46.126455    6681 request_logger.go:45] AWS request: ec2/RevokeSecurityGroupIngress
+volume:vol-062b1035d2dcbec3f	still has dependencies, will retry
+I0812 20:00:46.134269    6681 request_logger.go:45] AWS request: ec2/RevokeSecurityGroupIngress
+volume:vol-0512138e5e2ee865e	still has dependencies, will retry
+volume:vol-0f1c598c27547ec12	still has dependencies, will retry
+volume:vol-0e3af352a55ebefdb	still has dependencies, will retry
+autoscaling-config:nodes.prototype.emvaldes.name-20200813015942	ok
+autoscaling-config:master-us-east-1b.masters.prototype.emvaldes.name-20200813015942	ok
+subnet:subnet-03e4d1e6c144d58a2	still has dependencies, will retry
+subnet:subnet-061997eac0ea4fccf	still has dependencies, will retry
+I0812 20:00:46.334465    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-05906322bdbddfd04"
+I0812 20:00:46.334556    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 20:00:46.357145    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-028a0321b9a33df87"
+I0812 20:00:46.357304    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 20:00:46.369059    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0b53bc05196934020"
+I0812 20:00:46.369245    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+subnet:subnet-0b82293ce86133b74	still has dependencies, will retry
+security-group:sg-028a0321b9a33df87	still has dependencies, will retry
+security-group:sg-05906322bdbddfd04	still has dependencies, will retry
+security-group:sg-0b53bc05196934020	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	security-group:sg-0b53bc05196934020
+	volume:vol-0512138e5e2ee865e
+	security-group:sg-05906322bdbddfd04
+	route-table:rtb-06424261ae0b613d0
+	volume:vol-0f1c598c27547ec12
+	vpc:vpc-0a7187a5f2885941d
+	security-group:sg-028a0321b9a33df87
+	subnet:subnet-03e4d1e6c144d58a2
+	internet-gateway:igw-00320b6890da7c21e
+	volume:vol-06a139e85daa45ccf
+	volume:vol-03ffe65af0871a560
+	volume:vol-0e3af352a55ebefdb
+	dhcp-options:dopt-034d8fb3b84ef4d24
+	subnet:subnet-0b82293ce86133b74
+	volume:vol-062b1035d2dcbec3f
+	subnet:subnet-061997eac0ea4fccf
+I0812 20:00:56.768809    6681 aws.go:734] Deleting EC2 Subnet "subnet-0b82293ce86133b74"
+I0812 20:00:56.768881    6681 aws.go:734] Deleting EC2 Subnet "subnet-061997eac0ea4fccf"
+I0812 20:00:56.768912    6681 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 20:00:56.768931    6681 aws.go:571] Deleting EC2 Volume "vol-03ffe65af0871a560"
+I0812 20:00:56.768975    6681 aws.go:571] Deleting EC2 Volume "vol-0512138e5e2ee865e"
+I0812 20:00:56.769002    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:00:56.769007    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:00:56.769032    6681 aws.go:571] Deleting EC2 Volume "vol-06a139e85daa45ccf"
+I0812 20:00:56.769065    6681 aws.go:571] Deleting EC2 Volume "vol-0e3af352a55ebefdb"
+I0812 20:00:56.769092    6681 aws.go:571] Deleting EC2 Volume "vol-062b1035d2dcbec3f"
+I0812 20:00:56.769138    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:00:56.769174    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:00:56.768912    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:00:56.769238    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:00:56.769010    6681 aws.go:734] Deleting EC2 Subnet "subnet-03e4d1e6c144d58a2"
+I0812 20:00:56.769369    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:00:56.769079    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:00:56.769385    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:00:56.769435    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:00:56.769483    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:00:56.768943    6681 aws.go:571] Deleting EC2 Volume "vol-0f1c598c27547ec12"
+I0812 20:00:56.769638    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+volume:vol-0512138e5e2ee865e	still has dependencies, will retry
+volume:vol-062b1035d2dcbec3f	still has dependencies, will retry
+I0812 20:00:57.155081    6681 aws.go:1013] Detaching EC2 InternetGateway "igw-00320b6890da7c21e"
+I0812 20:00:57.155196    6681 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+volume:vol-0e3af352a55ebefdb	still has dependencies, will retry
+volume:vol-06a139e85daa45ccf	still has dependencies, will retry
+volume:vol-03ffe65af0871a560	still has dependencies, will retry
+I0812 20:00:57.236808    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0b53bc05196934020"
+I0812 20:00:57.236894    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 20:00:57.259872    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-05906322bdbddfd04"
+I0812 20:00:57.260039    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+subnet:subnet-0b82293ce86133b74	still has dependencies, will retry
+subnet:subnet-03e4d1e6c144d58a2	still has dependencies, will retry
+internet-gateway:igw-00320b6890da7c21e	still has dependencies, will retry
+volume:vol-0f1c598c27547ec12	still has dependencies, will retry
+subnet:subnet-061997eac0ea4fccf	still has dependencies, will retry
+I0812 20:00:57.469336    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-028a0321b9a33df87"
+I0812 20:00:57.469446    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+security-group:sg-0b53bc05196934020	still has dependencies, will retry
+security-group:sg-05906322bdbddfd04	still has dependencies, will retry
+security-group:sg-028a0321b9a33df87	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	internet-gateway:igw-00320b6890da7c21e
+	volume:vol-06a139e85daa45ccf
+	volume:vol-03ffe65af0871a560
+	volume:vol-0e3af352a55ebefdb
+	dhcp-options:dopt-034d8fb3b84ef4d24
+	subnet:subnet-061997eac0ea4fccf
+	subnet:subnet-0b82293ce86133b74
+	volume:vol-062b1035d2dcbec3f
+	security-group:sg-05906322bdbddfd04
+	security-group:sg-0b53bc05196934020
+	volume:vol-0512138e5e2ee865e
+	volume:vol-0f1c598c27547ec12
+	route-table:rtb-06424261ae0b613d0
+	vpc:vpc-0a7187a5f2885941d
+	security-group:sg-028a0321b9a33df87
+	subnet:subnet-03e4d1e6c144d58a2
+I0812 20:01:07.746292    6681 aws.go:571] Deleting EC2 Volume "vol-0f1c598c27547ec12"
+I0812 20:01:07.746368    6681 aws.go:571] Deleting EC2 Volume "vol-06a139e85daa45ccf"
+I0812 20:01:07.746397    6681 aws.go:571] Deleting EC2 Volume "vol-03ffe65af0871a560"
+I0812 20:01:07.746439    6681 aws.go:734] Deleting EC2 Subnet "subnet-061997eac0ea4fccf"
+I0812 20:01:07.746458    6681 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 20:01:07.746497    6681 aws.go:571] Deleting EC2 Volume "vol-0512138e5e2ee865e"
+I0812 20:01:07.746510    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:01:07.746513    6681 aws.go:734] Deleting EC2 Subnet "subnet-03e4d1e6c144d58a2"
+I0812 20:01:07.746555    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:07.746587    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:07.746593    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:01:07.746611    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:07.746526    6681 aws.go:734] Deleting EC2 Subnet "subnet-0b82293ce86133b74"
+I0812 20:01:07.746654    6681 aws.go:571] Deleting EC2 Volume "vol-0e3af352a55ebefdb"
+I0812 20:01:07.746624    6681 aws.go:571] Deleting EC2 Volume "vol-062b1035d2dcbec3f"
+I0812 20:01:07.746703    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:01:07.746743    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:01:07.746838    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:07.746474    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:07.746881    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:01:07.746883    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:07.746747    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:01:08.109632    6681 aws.go:1013] Detaching EC2 InternetGateway "igw-00320b6890da7c21e"
+I0812 20:01:08.109818    6681 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+volume:vol-0512138e5e2ee865e	still has dependencies, will retry
+volume:vol-062b1035d2dcbec3f	still has dependencies, will retry
+volume:vol-06a139e85daa45ccf	still has dependencies, will retry
+volume:vol-0f1c598c27547ec12	still has dependencies, will retry
+I0812 20:01:08.200740    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-05906322bdbddfd04"
+I0812 20:01:08.200828    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+volume:vol-03ffe65af0871a560	still has dependencies, will retry
+volume:vol-0e3af352a55ebefdb	still has dependencies, will retry
+I0812 20:01:08.274733    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-028a0321b9a33df87"
+I0812 20:01:08.274904    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 20:01:08.289182    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0b53bc05196934020"
+I0812 20:01:08.289357    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+subnet:subnet-061997eac0ea4fccf	still has dependencies, will retry
+subnet:subnet-0b82293ce86133b74	still has dependencies, will retry
+internet-gateway:igw-00320b6890da7c21e	still has dependencies, will retry
+subnet:subnet-03e4d1e6c144d58a2	still has dependencies, will retry
+security-group:sg-05906322bdbddfd04	still has dependencies, will retry
+security-group:sg-028a0321b9a33df87	still has dependencies, will retry
+security-group:sg-0b53bc05196934020	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	security-group:sg-05906322bdbddfd04
+	security-group:sg-0b53bc05196934020
+	volume:vol-0512138e5e2ee865e
+	volume:vol-0f1c598c27547ec12
+	route-table:rtb-06424261ae0b613d0
+	security-group:sg-028a0321b9a33df87
+	subnet:subnet-03e4d1e6c144d58a2
+	vpc:vpc-0a7187a5f2885941d
+	internet-gateway:igw-00320b6890da7c21e
+	volume:vol-06a139e85daa45ccf
+	volume:vol-0e3af352a55ebefdb
+	dhcp-options:dopt-034d8fb3b84ef4d24
+	volume:vol-03ffe65af0871a560
+	volume:vol-062b1035d2dcbec3f
+	subnet:subnet-061997eac0ea4fccf
+	subnet:subnet-0b82293ce86133b74
+I0812 20:01:18.707631    6681 aws.go:571] Deleting EC2 Volume "vol-03ffe65af0871a560"
+I0812 20:01:18.707666    6681 aws.go:571] Deleting EC2 Volume "vol-062b1035d2dcbec3f"
+I0812 20:01:18.707766    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:01:18.707810    6681 aws.go:571] Deleting EC2 Volume "vol-06a139e85daa45ccf"
+I0812 20:01:18.707817    6681 aws.go:734] Deleting EC2 Subnet "subnet-0b82293ce86133b74"
+I0812 20:01:18.707847    6681 aws.go:734] Deleting EC2 Subnet "subnet-03e4d1e6c144d58a2"
+I0812 20:01:18.707871    6681 aws.go:571] Deleting EC2 Volume "vol-0f1c598c27547ec12"
+I0812 20:01:18.707831    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:18.707965    6681 aws.go:571] Deleting EC2 Volume "vol-0e3af352a55ebefdb"
+I0812 20:01:18.708001    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:01:18.708094    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:18.707831    6681 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 20:01:18.708172    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:01:18.707851    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:18.708235    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:18.707772    6681 aws.go:571] Deleting EC2 Volume "vol-0512138e5e2ee865e"
+I0812 20:01:18.707883    6681 aws.go:734] Deleting EC2 Subnet "subnet-061997eac0ea4fccf"
+I0812 20:01:18.708107    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:01:18.708106    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:01:18.708125    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:18.708483    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:18.708487    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:01:19.064344    6681 aws.go:1013] Detaching EC2 InternetGateway "igw-00320b6890da7c21e"
+I0812 20:01:19.064525    6681 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+volume:vol-062b1035d2dcbec3f	still has dependencies, will retry
+volume:vol-0512138e5e2ee865e	still has dependencies, will retry
+volume:vol-0f1c598c27547ec12	still has dependencies, will retry
+volume:vol-03ffe65af0871a560	still has dependencies, will retry
+volume:vol-0e3af352a55ebefdb	still has dependencies, will retry
+I0812 20:01:19.161811    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-028a0321b9a33df87"
+I0812 20:01:19.161888    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 20:01:19.164584    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0b53bc05196934020"
+I0812 20:01:19.164646    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 20:01:19.166581    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-05906322bdbddfd04"
+I0812 20:01:19.166638    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+volume:vol-06a139e85daa45ccf	still has dependencies, will retry
+subnet:subnet-061997eac0ea4fccf	still has dependencies, will retry
+subnet:subnet-0b82293ce86133b74	still has dependencies, will retry
+subnet:subnet-03e4d1e6c144d58a2	still has dependencies, will retry
+internet-gateway:igw-00320b6890da7c21e	still has dependencies, will retry
+security-group:sg-0b53bc05196934020	still has dependencies, will retry
+security-group:sg-05906322bdbddfd04	still has dependencies, will retry
+security-group:sg-028a0321b9a33df87	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	volume:vol-03ffe65af0871a560
+	volume:vol-0e3af352a55ebefdb
+	dhcp-options:dopt-034d8fb3b84ef4d24
+	subnet:subnet-0b82293ce86133b74
+	volume:vol-062b1035d2dcbec3f
+	subnet:subnet-061997eac0ea4fccf
+	security-group:sg-0b53bc05196934020
+	volume:vol-0512138e5e2ee865e
+	security-group:sg-05906322bdbddfd04
+	volume:vol-0f1c598c27547ec12
+	route-table:rtb-06424261ae0b613d0
+	vpc:vpc-0a7187a5f2885941d
+	security-group:sg-028a0321b9a33df87
+	subnet:subnet-03e4d1e6c144d58a2
+	volume:vol-06a139e85daa45ccf
+	internet-gateway:igw-00320b6890da7c21e
+I0812 20:01:29.601467    6681 aws.go:571] Deleting EC2 Volume "vol-0f1c598c27547ec12"
+I0812 20:01:29.601492    6681 aws.go:571] Deleting EC2 Volume "vol-062b1035d2dcbec3f"
+I0812 20:01:29.601502    6681 aws.go:734] Deleting EC2 Subnet "subnet-03e4d1e6c144d58a2"
+I0812 20:01:29.601571    6681 aws.go:734] Deleting EC2 Subnet "subnet-0b82293ce86133b74"
+I0812 20:01:29.601583    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:01:29.601579    6681 aws.go:571] Deleting EC2 Volume "vol-0512138e5e2ee865e"
+I0812 20:01:29.601585    6681 aws.go:571] Deleting EC2 Volume "vol-06a139e85daa45ccf"
+I0812 20:01:29.601476    6681 aws.go:571] Deleting EC2 Volume "vol-03ffe65af0871a560"
+I0812 20:01:29.601657    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:01:29.601579    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:29.601676    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:01:29.601482    6681 aws.go:734] Deleting EC2 Subnet "subnet-061997eac0ea4fccf"
+I0812 20:01:29.601695    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:29.601701    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:29.601574    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:29.601760    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:01:29.601577    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:01:29.601594    6681 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 20:01:29.601677    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:01:29.601686    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:29.601467    6681 aws.go:571] Deleting EC2 Volume "vol-0e3af352a55ebefdb"
+I0812 20:01:29.601934    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+volume:vol-0512138e5e2ee865e	still has dependencies, will retry
+volume:vol-062b1035d2dcbec3f	still has dependencies, will retry
+I0812 20:01:29.969033    6681 aws.go:1013] Detaching EC2 InternetGateway "igw-00320b6890da7c21e"
+I0812 20:01:29.969102    6681 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+volume:vol-06a139e85daa45ccf	still has dependencies, will retry
+volume:vol-0f1c598c27547ec12	still has dependencies, will retry
+volume:vol-0e3af352a55ebefdb	still has dependencies, will retry
+volume:vol-03ffe65af0871a560	still has dependencies, will retry
+I0812 20:01:30.054563    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-028a0321b9a33df87"
+I0812 20:01:30.054646    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 20:01:30.055126    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0b53bc05196934020"
+I0812 20:01:30.055185    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 20:01:30.069401    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-05906322bdbddfd04"
+I0812 20:01:30.069573    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+subnet:subnet-061997eac0ea4fccf	still has dependencies, will retry
+subnet:subnet-03e4d1e6c144d58a2	still has dependencies, will retry
+internet-gateway:igw-00320b6890da7c21e	still has dependencies, will retry
+subnet:subnet-0b82293ce86133b74	still has dependencies, will retry
+security-group:sg-0b53bc05196934020	still has dependencies, will retry
+security-group:sg-028a0321b9a33df87	still has dependencies, will retry
+security-group:sg-05906322bdbddfd04	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	volume:vol-0f1c598c27547ec12
+	route-table:rtb-06424261ae0b613d0
+	subnet:subnet-03e4d1e6c144d58a2
+	vpc:vpc-0a7187a5f2885941d
+	security-group:sg-028a0321b9a33df87
+	internet-gateway:igw-00320b6890da7c21e
+	volume:vol-06a139e85daa45ccf
+	dhcp-options:dopt-034d8fb3b84ef4d24
+	volume:vol-03ffe65af0871a560
+	volume:vol-0e3af352a55ebefdb
+	subnet:subnet-061997eac0ea4fccf
+	subnet:subnet-0b82293ce86133b74
+	volume:vol-062b1035d2dcbec3f
+	security-group:sg-05906322bdbddfd04
+	security-group:sg-0b53bc05196934020
+	volume:vol-0512138e5e2ee865e
+I0812 20:01:40.580293    6681 aws.go:571] Deleting EC2 Volume "vol-0f1c598c27547ec12"
+I0812 20:01:40.580362    6681 aws.go:734] Deleting EC2 Subnet "subnet-061997eac0ea4fccf"
+I0812 20:01:40.580390    6681 aws.go:571] Deleting EC2 Volume "vol-03ffe65af0871a560"
+I0812 20:01:40.580471    6681 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 20:01:40.580474    6681 aws.go:571] Deleting EC2 Volume "vol-0512138e5e2ee865e"
+I0812 20:01:40.580530    6681 aws.go:734] Deleting EC2 Subnet "subnet-03e4d1e6c144d58a2"
+I0812 20:01:40.580550    6681 aws.go:734] Deleting EC2 Subnet "subnet-0b82293ce86133b74"
+I0812 20:01:40.580550    6681 aws.go:571] Deleting EC2 Volume "vol-06a139e85daa45ccf"
+I0812 20:01:40.580605    6681 aws.go:571] Deleting EC2 Volume "vol-062b1035d2dcbec3f"
+I0812 20:01:40.580680    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:01:40.580512    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:40.580716    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:40.580776    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:01:40.580797    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:40.580315    6681 aws.go:571] Deleting EC2 Volume "vol-0e3af352a55ebefdb"
+I0812 20:01:40.580833    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:01:40.580853    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:40.580557    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:01:40.580977    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:40.580558    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:01:40.580591    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:40.580724    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:01:40.957617    6681 aws.go:1013] Detaching EC2 InternetGateway "igw-00320b6890da7c21e"
+I0812 20:01:40.957732    6681 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+volume:vol-062b1035d2dcbec3f	still has dependencies, will retry
+volume:vol-0512138e5e2ee865e	still has dependencies, will retry
+I0812 20:01:41.028170    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-028a0321b9a33df87"
+I0812 20:01:41.028338    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 20:01:41.031949    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0b53bc05196934020"
+I0812 20:01:41.032065    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 20:01:41.035513    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-05906322bdbddfd04"
+I0812 20:01:41.035627    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+volume:vol-03ffe65af0871a560	still has dependencies, will retry
+volume:vol-0e3af352a55ebefdb	still has dependencies, will retry
+volume:vol-0f1c598c27547ec12	still has dependencies, will retry
+volume:vol-06a139e85daa45ccf	still has dependencies, will retry
+subnet:subnet-03e4d1e6c144d58a2	still has dependencies, will retry
+subnet:subnet-0b82293ce86133b74	still has dependencies, will retry
+subnet:subnet-061997eac0ea4fccf	still has dependencies, will retry
+internet-gateway:igw-00320b6890da7c21e	still has dependencies, will retry
+security-group:sg-0b53bc05196934020	still has dependencies, will retry
+security-group:sg-05906322bdbddfd04	still has dependencies, will retry
+security-group:sg-028a0321b9a33df87	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	volume:vol-03ffe65af0871a560
+	volume:vol-0e3af352a55ebefdb
+	dhcp-options:dopt-034d8fb3b84ef4d24
+	volume:vol-062b1035d2dcbec3f
+	subnet:subnet-061997eac0ea4fccf
+	subnet:subnet-0b82293ce86133b74
+	volume:vol-0512138e5e2ee865e
+	security-group:sg-05906322bdbddfd04
+	security-group:sg-0b53bc05196934020
+	volume:vol-0f1c598c27547ec12
+	route-table:rtb-06424261ae0b613d0
+	security-group:sg-028a0321b9a33df87
+	subnet:subnet-03e4d1e6c144d58a2
+	vpc:vpc-0a7187a5f2885941d
+	volume:vol-06a139e85daa45ccf
+	internet-gateway:igw-00320b6890da7c21e
+I0812 20:01:51.375133    6681 aws.go:571] Deleting EC2 Volume "vol-062b1035d2dcbec3f"
+I0812 20:01:51.375232    6681 aws.go:571] Deleting EC2 Volume "vol-03ffe65af0871a560"
+I0812 20:01:51.375311    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:01:51.375326    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:51.375343    6681 aws.go:571] Deleting EC2 Volume "vol-0f1c598c27547ec12"
+I0812 20:01:51.375366    6681 aws.go:571] Deleting EC2 Volume "vol-0e3af352a55ebefdb"
+I0812 20:01:51.375378    6681 aws.go:734] Deleting EC2 Subnet "subnet-061997eac0ea4fccf"
+I0812 20:01:51.375410    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:51.375488    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:01:51.375487    6681 aws.go:571] Deleting EC2 Volume "vol-06a139e85daa45ccf"
+I0812 20:01:51.375498    6681 aws.go:571] Deleting EC2 Volume "vol-0512138e5e2ee865e"
+I0812 20:01:51.375455    6681 aws.go:734] Deleting EC2 Subnet "subnet-03e4d1e6c144d58a2"
+I0812 20:01:51.375633    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:51.375321    6681 aws.go:734] Deleting EC2 Subnet "subnet-0b82293ce86133b74"
+I0812 20:01:51.375702    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:01:51.375702    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:51.375710    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:01:51.375747    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:51.375346    6681 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 20:01:51.375534    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:01:51.375863    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:01:51.375903    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:01:51.740770    6681 aws.go:1013] Detaching EC2 InternetGateway "igw-00320b6890da7c21e"
+I0812 20:01:51.740972    6681 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+volume:vol-062b1035d2dcbec3f	still has dependencies, will retry
+volume:vol-0512138e5e2ee865e	still has dependencies, will retry
+volume:vol-03ffe65af0871a560	still has dependencies, will retry
+I0812 20:01:51.817155    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-05906322bdbddfd04"
+I0812 20:01:51.817321    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+volume:vol-0e3af352a55ebefdb	still has dependencies, will retry
+I0812 20:01:51.822903    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0b53bc05196934020"
+I0812 20:01:51.823011    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+volume:vol-06a139e85daa45ccf	ok
+volume:vol-0f1c598c27547ec12	ok
+subnet:subnet-0b82293ce86133b74	still has dependencies, will retry
+subnet:subnet-03e4d1e6c144d58a2	still has dependencies, will retry
+I0812 20:01:51.971654    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-028a0321b9a33df87"
+I0812 20:01:51.971819    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+subnet:subnet-061997eac0ea4fccf	ok
+internet-gateway:igw-00320b6890da7c21e	still has dependencies, will retry
+security-group:sg-05906322bdbddfd04	still has dependencies, will retry
+security-group:sg-0b53bc05196934020	still has dependencies, will retry
+security-group:sg-028a0321b9a33df87	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	volume:vol-03ffe65af0871a560
+	volume:vol-0e3af352a55ebefdb
+	dhcp-options:dopt-034d8fb3b84ef4d24
+	subnet:subnet-0b82293ce86133b74
+	volume:vol-062b1035d2dcbec3f
+	security-group:sg-05906322bdbddfd04
+	security-group:sg-0b53bc05196934020
+	volume:vol-0512138e5e2ee865e
+	route-table:rtb-06424261ae0b613d0
+	vpc:vpc-0a7187a5f2885941d
+	security-group:sg-028a0321b9a33df87
+	subnet:subnet-03e4d1e6c144d58a2
+	internet-gateway:igw-00320b6890da7c21e
+I0812 20:02:02.320089    6681 aws.go:571] Deleting EC2 Volume "vol-03ffe65af0871a560"
+I0812 20:02:02.320138    6681 aws.go:571] Deleting EC2 Volume "vol-0e3af352a55ebefdb"
+I0812 20:02:02.320177    6681 aws.go:571] Deleting EC2 Volume "vol-062b1035d2dcbec3f"
+I0812 20:02:02.320183    6681 aws.go:734] Deleting EC2 Subnet "subnet-03e4d1e6c144d58a2"
+I0812 20:02:02.320259    6681 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 20:02:02.320259    6681 aws.go:734] Deleting EC2 Subnet "subnet-0b82293ce86133b74"
+I0812 20:02:02.320297    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:02:02.320354    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:02:02.320362    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:02:02.320388    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:02:02.320154    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:02:02.320451    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:02:02.320263    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:02:02.320152    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:02:02.320282    6681 aws.go:571] Deleting EC2 Volume "vol-0512138e5e2ee865e"
+I0812 20:02:02.320821    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:02:02.451491    6681 aws.go:1013] Detaching EC2 InternetGateway "igw-00320b6890da7c21e"
+I0812 20:02:02.451588    6681 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+volume:vol-062b1035d2dcbec3f	ok
+volume:vol-0e3af352a55ebefdb	still has dependencies, will retry
+volume:vol-0512138e5e2ee865e	ok
+I0812 20:02:02.798514    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-028a0321b9a33df87"
+I0812 20:02:02.798630    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 20:02:02.800534    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0b53bc05196934020"
+I0812 20:02:02.800653    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+subnet:subnet-03e4d1e6c144d58a2	still has dependencies, will retry
+I0812 20:02:02.843258    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-05906322bdbddfd04"
+I0812 20:02:02.843365    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+internet-gateway:igw-00320b6890da7c21e	still has dependencies, will retry
+subnet:subnet-0b82293ce86133b74	still has dependencies, will retry
+volume:vol-03ffe65af0871a560	still has dependencies, will retry
+security-group:sg-028a0321b9a33df87	still has dependencies, will retry
+security-group:sg-0b53bc05196934020	still has dependencies, will retry
+security-group:sg-05906322bdbddfd04	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	internet-gateway:igw-00320b6890da7c21e
+	volume:vol-03ffe65af0871a560
+	volume:vol-0e3af352a55ebefdb
+	dhcp-options:dopt-034d8fb3b84ef4d24
+	subnet:subnet-0b82293ce86133b74
+	security-group:sg-05906322bdbddfd04
+	security-group:sg-0b53bc05196934020
+	route-table:rtb-06424261ae0b613d0
+	vpc:vpc-0a7187a5f2885941d
+	security-group:sg-028a0321b9a33df87
+	subnet:subnet-03e4d1e6c144d58a2
+I0812 20:02:13.185151    6681 aws.go:734] Deleting EC2 Subnet "subnet-0b82293ce86133b74"
+I0812 20:02:13.185181    6681 aws.go:734] Deleting EC2 Subnet "subnet-03e4d1e6c144d58a2"
+I0812 20:02:13.185190    6681 aws.go:571] Deleting EC2 Volume "vol-0e3af352a55ebefdb"
+I0812 20:02:13.185159    6681 aws.go:571] Deleting EC2 Volume "vol-03ffe65af0871a560"
+I0812 20:02:13.185246    6681 request_logger.go:45] AWS request: ec2/DescribeInternetGateways
+I0812 20:02:13.185256    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:02:13.185286    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:02:13.185246    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:02:13.185301    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:02:13.185312    6681 request_logger.go:45] AWS request: ec2/DeleteVolume
+I0812 20:02:13.185253    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:02:13.185292    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:02:13.330304    6681 aws.go:1013] Detaching EC2 InternetGateway "igw-00320b6890da7c21e"
+I0812 20:02:13.330471    6681 request_logger.go:45] AWS request: ec2/DetachInternetGateway
+I0812 20:02:13.557892    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-0b53bc05196934020"
+I0812 20:02:13.558008    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 20:02:13.567299    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-028a0321b9a33df87"
+I0812 20:02:13.567475    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+I0812 20:02:13.582012    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-05906322bdbddfd04"
+I0812 20:02:13.582183    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+volume:vol-0e3af352a55ebefdb	ok
+volume:vol-03ffe65af0871a560	ok
+I0812 20:02:13.676575    6681 aws.go:1028] Deleting EC2 InternetGateway "igw-00320b6890da7c21e"
+I0812 20:02:13.676718    6681 request_logger.go:45] AWS request: ec2/DeleteInternetGateway
+subnet:subnet-0b82293ce86133b74	still has dependencies, will retry
+security-group:sg-0b53bc05196934020	ok
+security-group:sg-028a0321b9a33df87	ok
+internet-gateway:igw-00320b6890da7c21e	ok
+subnet:subnet-03e4d1e6c144d58a2	ok
+security-group:sg-05906322bdbddfd04	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	dhcp-options:dopt-034d8fb3b84ef4d24
+	subnet:subnet-0b82293ce86133b74
+	security-group:sg-05906322bdbddfd04
+	route-table:rtb-06424261ae0b613d0
+	vpc:vpc-0a7187a5f2885941d
+I0812 20:02:24.009459    6681 aws.go:734] Deleting EC2 Subnet "subnet-0b82293ce86133b74"
+I0812 20:02:24.009575    6681 request_logger.go:45] AWS request: ec2/DeleteSubnet
+I0812 20:02:24.009575    6681 request_logger.go:45] AWS request: ec2/DescribeSecurityGroups
+I0812 20:02:24.257402    6681 securitygroup.go:71] Deleting EC2 SecurityGroup "sg-05906322bdbddfd04"
+I0812 20:02:24.257499    6681 request_logger.go:45] AWS request: ec2/DeleteSecurityGroup
+subnet:subnet-0b82293ce86133b74	ok
+security-group:sg-05906322bdbddfd04	ok
+I0812 20:02:24.579422    6681 aws.go:890] Deleting EC2 RouteTable "rtb-06424261ae0b613d0"
+I0812 20:02:24.579553    6681 request_logger.go:45] AWS request: ec2/DeleteRouteTable
+route-table:rtb-06424261ae0b613d0	ok
+I0812 20:02:24.775414    6681 vpc.go:36] Deleting EC2 VPC "vpc-0a7187a5f2885941d"
+I0812 20:02:24.775502    6681 request_logger.go:45] AWS request: ec2/DeleteVpc
+vpc:vpc-0a7187a5f2885941d	ok
+I0812 20:02:25.063020    6681 aws.go:928] Deleting EC2 DhcpOptions "dopt-034d8fb3b84ef4d24"
+I0812 20:02:25.063102    6681 request_logger.go:45] AWS request: ec2/DeleteDhcpOptions
+dhcp-options:dopt-034d8fb3b84ef4d24	ok
+W0812 20:02:37.795197    6681 delete_cluster.go:211] error removing kube config: error loading kubeconfig: error loading config file "/Users/emvaldes/.kube/k8sctl/clusters/emvaldes.name/prototype/config": no kind "Cluster" is registered for version "kops.k8s.io/v1alpha2" in scheme "pkg/runtime/scheme.go:101"
+
+Deleted cluster: "prototype.emvaldes.name"
+
+real	2m19.232s
+user	0m6.102s
+sys	0m2.589s

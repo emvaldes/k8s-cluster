@@ -1,0 +1,33 @@
+#!/bin/bash
+## Version: 0.1.0
+
+script_name=$(basename ${0});
+
+function script_options () {
+    ## tracking_process ${FUNCNAME} "${@}";
+    display_message "Use:  ${script_name}
+      --access-pubkey='${KUBERNETES_SSHKEY}'
+      --cluster-name='${cluster_name}'
+      --create-cluster
+      --delete-cluster
+      --deploy-cluster
+      --deploy-dashboard
+      --deploy-prometheus
+      --deploy-prototype
+      --describe-cluster
+      --domain-name
+      --enable-cloudwatch
+      --help-create
+      --help-delete
+      --interactive
+      --kubeconfig='${KUBECONFIG}'
+      --profile='${default_profile}'
+      --region='${AWS_REGION}'
+      --target-cluster='${cluster_name}.${default_domain}'
+      --zones='${AWS_ZONES}'
+      --verbose
+    ";
+    display_message "Goodbye!";
+    exit 0;
+    ## return 0;
+  };
