@@ -68,7 +68,7 @@ function k8s_cluster () {
     tracking_process ${FUNCNAME} "${@}";
     oIFS="${IFS}";
     for xitem in "${@}"; do
-      IFS='='; set `echo -e "${xitem}" | sed -e 's/--//g'`
+      IFS='='; set `echo -e "${xitem}" | sed -e '1s|^\(-\)\{1,\}||'`
       [[ ${1#*\--} = "access-pubkey" ]] && export access_pubkey="${2}";
       [[ ${1#*\--} = "cluster-name" ]] && export cluster_name="${2}";
       if [[ ${1#*\--} = "create-cluster" ]]; then
